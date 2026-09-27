@@ -1,0 +1,52 @@
+.header {
+  max-width: 44rem;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.title {
+  margin-top: var(--space-5);
+}
+
+.intro {
+  margin-top: var(--space-5);
+  font-size: var(--text-md);
+  max-width: 40rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin: 0;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-block: clamp(1.5rem, 3vw, 2.25rem);
+  border-top: 1px solid var(--color-line);
+}
+
+.itemTitle {
+  margin: 0;
+  font-size: var(--text-lg);
+}
+
+.itemText {
+  margin: 0;
+  font-size: var(--text-base);
+  max-width: 30rem;
+}
+
+@media (min-width: 640px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: var(--space-9);
+  }
+}
+
+@media (min-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

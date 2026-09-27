@@ -1,0 +1,31 @@
+.section {
+  position: relative;
+  padding-block: var(--section-y);
+}
+
+.tight {
+  padding-block: clamp(2.5rem, 6vw, 5rem);
+}
+
+.flush {
+  padding-block: 0;
+}
+
+.deep {
+  background-color: var(--color-bg-deep);
+}
+
+.inverse {
+  background-color: var(--color-inverse-bg);
+  color: var(--color-inverse-ink);
+}
+
+.inverse h2,
+.inverse h3,
+.inverse h4 {
+  color: var(--color-inverse-ink);
+}
+
+.inverse p {
+  color: var(--color-inverse-muted);
+}

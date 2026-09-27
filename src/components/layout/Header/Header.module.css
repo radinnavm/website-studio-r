@@ -1,0 +1,152 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  background-color: rgba(247, 244, 239, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  height: 4.75rem;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-ink);
+}
+
+.logoMark {
+  font-style: italic;
+  color: var(--color-taupe-deep);
+}
+
+.nav {
+  display: none;
+}
+
+.navList {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  margin: 0;
+}
+
+.navLink {
+  position: relative;
+  white-space: nowrap;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  transition: color var(--duration-base) var(--ease-out);
+}
+
+.navLink::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -0.4rem;
+  width: 100%;
+  height: 1px;
+  background-color: var(--color-ink);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.navLink:hover {
+  color: var(--color-ink);
+}
+
+.navLink:hover::after {
+  transform: scaleX(1);
+}
+
+.navLinkActive {
+  color: var(--color-ink);
+}
+
+.navLinkActive::after {
+  transform: scaleX(1);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.lang {
+  flex: none;
+}
+
+.cta {
+  display: none;
+}
+
+.menuToggle {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+}
+
+.menuBar {
+  display: block;
+  width: 1.5rem;
+  height: 1px;
+  margin-inline: auto;
+  background-color: var(--color-ink);
+}
+
+@media (min-width: 1000px) {
+  .nav {
+    display: block;
+  }
+
+  .cta {
+    display: inline-flex;
+  }
+
+  .menuToggle {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .inner {
+    gap: var(--space-3);
+  }
+
+  .actions {
+    gap: var(--space-3);
+  }
+}
+
+@media (max-width: 360px) {
+  .inner {
+    gap: var(--space-2);
+  }
+
+  .actions {
+    gap: var(--space-2);
+  }
+
+  .logo {
+    font-size: var(--text-base);
+  }
+}

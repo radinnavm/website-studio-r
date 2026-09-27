@@ -1,0 +1,64 @@
+.inner {
+  max-width: 56rem;
+}
+
+.eyebrow {
+  color: var(--color-taupe);
+}
+
+.eyebrow span:last-child {
+  color: var(--color-taupe);
+}
+
+.title {
+  margin-top: var(--space-5);
+  font-size: var(--text-2xl);
+  max-width: 24ch;
+}
+
+.lead {
+  margin-top: var(--space-6);
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  max-width: 38rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}
+
+.details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-8);
+  margin: clamp(3rem, 6vw, 4.5rem) 0 0;
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--color-inverse-line);
+}
+
+.details li {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--color-inverse-ink);
+}
+
+.detailLabel {
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--color-inverse-muted);
+}
+
+.details a {
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--duration-base) var(--ease-out);
+}
+
+.details a:hover {
+  border-color: var(--color-inverse-ink);
+}

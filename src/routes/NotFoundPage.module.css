@@ -1,0 +1,25 @@
+.inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-5);
+  max-width: 40rem;
+  padding-block: clamp(2rem, 6vw, 5rem);
+}
+
+.code {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-2xl);
+  font-style: italic;
+  color: var(--color-taupe);
+}
+
+.title {
+  margin: 0;
+}
+
+.text {
+  margin: 0;
+  font-size: var(--text-md);
+}

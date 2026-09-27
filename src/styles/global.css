@@ -1,0 +1,100 @@
+/* ==========================================================================
+   Global base — typography, elements, accessibility
+   ========================================================================== */
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--color-ink);
+}
+
+h1 {
+  font-size: var(--text-3xl);
+}
+
+h2 {
+  font-size: var(--text-2xl);
+}
+
+h3 {
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+}
+
+h4 {
+  font-size: var(--text-lg);
+  line-height: var(--leading-snug);
+}
+
+p {
+  color: var(--color-muted);
+}
+
+strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+
+::selection {
+  background-color: var(--color-taupe);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-taupe-deep);
+  outline-offset: 3px;
+  border-radius: var(--radius-xs);
+}
+
+/* Accessible skip link */
+.skip-link {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: calc(var(--z-header) + 10);
+  padding: var(--space-3) var(--space-5);
+  background-color: var(--color-ink);
+  color: var(--color-inverse-ink);
+  font-size: var(--text-sm);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  transform: translateY(-200%);
+  transition: transform var(--duration-fast) var(--ease-out);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+/* Smooth, subtle entrance for sections */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    animation: reveal var(--duration-slow) var(--ease-out) both;
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,31 @@
+.inner {
+  max-width: 56rem;
+}
+
+.eyebrow {
+  color: var(--color-taupe);
+}
+
+.eyebrow span:last-child {
+  color: var(--color-taupe);
+}
+
+.title {
+  margin-top: var(--space-5);
+  font-size: var(--text-2xl);
+  max-width: 24ch;
+}
+
+.lead {
+  margin-top: var(--space-6);
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  max-width: 38rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-8);
+}

@@ -1,0 +1,120 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-3);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  line-height: 1;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out),
+    transform var(--duration-fast) var(--ease-out);
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.md {
+  padding: var(--space-4) var(--space-6);
+}
+
+.lg {
+  padding: var(--space-5) var(--space-7);
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 480px) {
+  .lg {
+    white-space: normal;
+    padding: var(--space-4) var(--space-5);
+  }
+}
+
+.label {
+  display: inline-block;
+}
+
+.arrow {
+  display: inline-block;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.button:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* ---- Variants ------------------------------------------------------- */
+
+.primary {
+  background-color: var(--color-ink);
+  color: var(--color-inverse-ink);
+  border-color: var(--color-ink);
+}
+
+.primary:hover {
+  background-color: var(--color-taupe-deep);
+  border-color: var(--color-taupe-deep);
+  color: var(--color-inverse-ink);
+}
+
+.secondary {
+  background-color: transparent;
+  color: var(--color-ink);
+  border-color: var(--color-line-strong);
+}
+
+.secondary:hover {
+  background-color: var(--color-ink);
+  border-color: var(--color-ink);
+  color: var(--color-inverse-ink);
+}
+
+.ghost {
+  padding-inline: 0;
+  color: var(--color-ink);
+  border-color: transparent;
+}
+
+.ghost .label {
+  border-bottom: 1px solid var(--color-line-strong);
+  padding-bottom: 2px;
+  transition: border-color var(--duration-base) var(--ease-out);
+}
+
+.ghost:hover .label {
+  border-color: var(--color-ink);
+}
+
+.inverse {
+  background-color: var(--color-inverse-ink);
+  color: var(--color-ink);
+  border-color: var(--color-inverse-ink);
+}
+
+.inverse:hover {
+  background-color: transparent;
+  color: var(--color-inverse-ink);
+  border-color: var(--color-inverse-ink);
+}
+
+.outline-inverse {
+  background-color: transparent;
+  color: var(--color-inverse-ink);
+  border-color: var(--color-inverse-line);
+}
+
+.outline-inverse:hover {
+  background-color: var(--color-inverse-ink);
+  color: var(--color-ink);
+  border-color: var(--color-inverse-ink);
+}
