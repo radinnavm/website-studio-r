@@ -9,7 +9,7 @@ export const site = {
   name: 'Website Studio R',
   shortName: 'Studio R',
   url: 'https://websitestudior.com',
-  email: 'websitestudior@gmail.com',
+  email: 'hello@websitestudior.com',
   phone: '+359885167089',
   phoneHref: 'tel:+359885167089',
   ogImage: '/og-image.png',
