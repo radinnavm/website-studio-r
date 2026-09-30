@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.websitestudior.bg/sitemap.xml
+Sitemap: https://websitestudior.com/sitemap.xml

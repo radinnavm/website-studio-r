@@ -6,16 +6,13 @@ import { getHeadValues, getPageSeo } from '../src/lib/seoHead.ts'
 test('BG head values', () => {
   const head = getHeadValues('/uslugi', 'bg', getPageSeo('/uslugi', 'bg'))
   assert.equal(head.lang, 'bg')
-  assert.equal(head.canonical, 'https://www.websitestudior.bg/uslugi')
+  assert.equal(head.canonical, 'https://websitestudior.com/uslugi')
   assert.equal(head.robots, 'index, follow')
   assert.equal(head.ogLocale, 'bg_BG')
   assert.equal(head.hreflang.length, 3)
   assert.equal(head.hreflang[0].hreflang, 'bg-BG')
   assert.equal(head.hreflang[1].hreflang, 'en')
-  assert.equal(
-    head.hreflang[1].href,
-    'https://www.websitestudior.bg/en/services',
-  )
+  assert.equal(head.hreflang[1].href, 'https://websitestudior.com/en/services')
   assert.ok(head.jsonLd.some((x) => x.id === 'organization-website'))
   assert.ok(head.jsonLd.some((x) => x.id === 'breadcrumbs'))
 })
@@ -23,7 +20,7 @@ test('BG head values', () => {
 test('EN head values', () => {
   const head = getHeadValues('/uslugi', 'en', getPageSeo('/uslugi', 'en'))
   assert.equal(head.lang, 'en')
-  assert.equal(head.canonical, 'https://www.websitestudior.bg/en/services')
+  assert.equal(head.canonical, 'https://websitestudior.com/en/services')
   assert.equal(head.ogLocale, 'en_US')
   assert.equal(head.title, 'Services | Website Studio R')
 })
@@ -45,7 +42,7 @@ test('WebSite @id has no double slash', () => {
   const org = head.jsonLd.find((x) => x.id === 'organization-website')
   const graph = org?.data as Record<string, unknown>[]
   const website = graph?.find((g) => g['@type'] === 'WebSite')
-  assert.equal(website?.['@id'], 'https://www.websitestudior.bg/#website')
+  assert.equal(website?.['@id'], 'https://websitestudior.com/#website')
 })
 
 test('404 head values are noindex', () => {

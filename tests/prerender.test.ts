@@ -30,7 +30,7 @@ const shell = `<!doctype html>
     />
     <meta
       property="og:image"
-      content="https://www.websitestudior.bg/og-image.png"
+      content="https://websitestudior.com/og-image.png"
     />
     <meta
       name="twitter:title"
@@ -42,7 +42,7 @@ const shell = `<!doctype html>
     />
     <meta
       name="twitter:image"
-      content="https://www.websitestudior.bg/og-image.png"
+      content="https://websitestudior.com/og-image.png"
     />
     <title>Generic title</title>
   </head>
@@ -117,7 +117,7 @@ test('sitemap includes all indexable BG+EN routes and excludes privacy/404', () 
   const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1])
   assert.equal(locs.length, bgRoutes.length * 2)
   for (const bg of bgRoutes) {
-    assert.ok(locs.includes(`https://www.websitestudior.bg${bg}`))
+    assert.ok(locs.includes(`https://websitestudior.com${bg}`))
   }
   assert.ok(!sitemap.includes('politika-za-poveritelnost'))
   assert.ok(!sitemap.includes('/404'))

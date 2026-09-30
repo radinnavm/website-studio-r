@@ -8,7 +8,7 @@ import type { Localized, Locale } from '../lib/i18n.ts'
 export const site = {
   name: 'Website Studio R',
   shortName: 'Studio R',
-  url: 'https://www.websitestudior.bg',
+  url: 'https://websitestudior.com',
   email: 'websitestudior@gmail.com',
   phone: '+359885167089',
   phoneHref: 'tel:+359885167089',
