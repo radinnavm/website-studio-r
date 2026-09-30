@@ -9,9 +9,9 @@ export const site = {
   name: 'Website Studio R',
   shortName: 'Studio R',
   url: 'https://www.websitestudior.bg',
-  email: 'hello@websitestudior.bg',
-  phone: '+359 88 000 0000',
-  phoneHref: 'tel:+359880000000',
+  email: 'websitestudior@gmail.com',
+  phone: '+359885167089',
+  phoneHref: 'tel:+359885167089',
   ogImage: '/og-image.png',
 } as const
 
