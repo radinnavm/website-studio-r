@@ -19,6 +19,7 @@ export function AboutPage() {
     <>
       <PageHero
         eyebrow={t.hero.eyebrow}
+        index="01"
         title={t.hero.title}
         accent={t.hero.accent}
         lead={t.hero.lead}
@@ -28,11 +29,12 @@ export function AboutPage() {
         ]}
       />
 
-      {t.sections.map((section) => (
+      {t.sections.map((section, position) => (
         <ProseSection
           key={section.id}
           id={section.id}
           tone={section.tone}
+          index={String(position + 2).padStart(2, '0')}
           eyebrow={section.eyebrow}
           title={section.title}
           paragraphs={section.paragraphs}
@@ -42,6 +44,7 @@ export function AboutPage() {
       <FeatureSection
         id="principles"
         tone="deep"
+        index="05"
         eyebrow={uiT.about.principles}
         title={uiT.about.principlesTitle}
         items={t.principles}
@@ -49,6 +52,7 @@ export function AboutPage() {
 
       <CtaBanner
         id="about-cta"
+        index="06"
         secondaryLabel={
           locale === 'en' ? 'Explore our services' : 'Разгледайте услугите'
         }

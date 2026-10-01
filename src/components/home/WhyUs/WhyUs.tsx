@@ -1,9 +1,10 @@
 import { Container } from '@/components/ui/Container'
-import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Section } from '@/components/ui/Section'
+import { SectionHeader } from '@/components/ui/SectionHeader'
 import { getHomeContent } from '@/lib/content'
 import type { Localized } from '@/lib/i18n'
 import { useLocale } from '@/lib/LocaleProvider'
+import { revealClass, useReveal } from '@/lib/useReveal'
 
 import styles from './WhyUs.module.css'
 
@@ -26,21 +27,25 @@ export function WhyUs() {
   const { locale } = useLocale()
   const t = copy[locale]
   const { advantages } = getHomeContent(locale)
+  const { ref, visible } = useReveal<HTMLUListElement>()
 
   return (
     <Section id="why" tone="deep" aria-labelledby="why-heading">
       <Container>
-        <header className={styles.header}>
-          <Eyebrow>{t.eyebrow}</Eyebrow>
-          <h2 id="why-heading" className={styles.title}>
-            {t.title}
-          </h2>
-          <p className={styles.intro}>{t.intro}</p>
-        </header>
+        <SectionHeader
+          id="why-heading"
+          index="04"
+          eyebrow={t.eyebrow}
+          title={t.title}
+          lead={t.intro}
+        />
 
-        <ul className={styles.grid}>
-          {advantages.map((item) => (
+        <ul ref={ref} className={revealClass(styles.grid, visible)}>
+          {advantages.map((item, position) => (
             <li key={item.title} className={styles.item}>
+              <span className={styles.itemIndex} aria-hidden="true">
+                {String(position + 1).padStart(2, '0')}
+              </span>
               <h3 className={styles.itemTitle}>{item.title}</h3>
               <p className={styles.itemText}>{item.description}</p>
             </li>

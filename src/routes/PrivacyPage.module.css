@@ -50,7 +50,7 @@
   font-weight: 600;
   letter-spacing: var(--tracking-wider);
   text-transform: uppercase;
-  color: var(--color-taupe-deep);
+  color: var(--color-burgundy);
 }
 
 .todoList {
@@ -75,5 +75,5 @@
   top: 0.7em;
   width: 0.5rem;
   height: 1px;
-  background-color: var(--color-taupe-deep);
+  background-color: var(--color-burgundy-line);
 }

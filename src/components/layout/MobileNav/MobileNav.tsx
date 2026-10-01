@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react'
 import type { RefObject } from 'react'
+import { createPortal } from 'react-dom'
 import { Link, useLocation } from 'react-router-dom'
 
 import { Button } from '@/components/ui/Button'
@@ -79,8 +80,9 @@ export function MobileNav({
   }, [open, returnFocusRef])
 
   if (!open) return null
+  if (typeof document === 'undefined') return null
 
-  return (
+  return createPortal(
     <div className={styles.root}>
       <div className={styles.overlay} aria-hidden="true" onClick={onClose} />
 
@@ -149,6 +151,7 @@ export function MobileNav({
           </div>
         </Container>
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }

@@ -52,27 +52,27 @@ export const homeContent: Localized<HomeContent> = {
     processSteps: [
       {
         step: '01',
-        title: 'Запознаване с проекта',
+        title: 'Запознаваме се',
         description:
-          'Разбираме бизнеса, целите и аудиторията. Изясняваме какво трябва да постигне сайтът, преди да предложим решение.',
+          'Разбираме бизнеса, целите, аудиторията и какво трябва да постигне проектът.',
       },
       {
         step: '02',
-        title: 'Структура и дизайн',
+        title: 'Планираме',
         description:
-          'Подреждаме съдържанието и създаваме визуална система, която предава характера на бранда и води до действие.',
+          'Определяме структурата, съдържанието, функционалностите и визуалната посока.',
       },
       {
         step: '03',
-        title: 'Разработка',
+        title: 'Изграждаме',
         description:
-          'Изграждаме сайта с модерни технологии — бърз, сигурен, адаптивен и готов за растеж.',
+          'Създаваме дизайна, разработваме сайта и оптимизираме изживяването за desktop и mobile.',
       },
       {
         step: '04',
-        title: 'Стартиране и поддръжка',
+        title: 'Стартираме',
         description:
-          'Тестваме, оптимизираме и публикуваме. Оставаме на разположение за поддръжка и развитие.',
+          'Тестваме всичко, правим финални настройки и публикуваме проекта.',
       },
     ],
     advantages: [
@@ -130,27 +130,27 @@ export const homeContent: Localized<HomeContent> = {
     processSteps: [
       {
         step: '01',
-        title: 'Project discovery',
+        title: 'We get to know you',
         description:
-          'We get to know your business, goals and audience, and clarify what the site needs to achieve before proposing a solution.',
+          'We learn about your business, goals and audience, and what the project needs to achieve.',
       },
       {
         step: '02',
-        title: 'Structure & design',
+        title: 'We plan',
         description:
-          'We organise the content and create a visual system that conveys the character of the brand and drives action.',
+          'We define the structure, content, features and visual direction.',
       },
       {
         step: '03',
-        title: 'Development',
+        title: 'We build',
         description:
-          'We build the site with modern technology — fast, secure, responsive and ready to grow.',
+          'We create the design, develop the website and optimise the experience for desktop and mobile.',
       },
       {
         step: '04',
-        title: 'Launch & support',
+        title: 'We launch',
         description:
-          'We test, optimise and publish, then stay available for support and further development.',
+          'We test everything, make final adjustments and publish the project.',
       },
     ],
     advantages: [

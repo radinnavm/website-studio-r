@@ -29,3 +29,49 @@
 .u-italic {
   font-style: italic;
 }
+
+/* ---- Editorial lead ------------------------------------------------- */
+.lead {
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  color: var(--color-muted);
+  max-width: var(--measure-md);
+  text-wrap: pretty;
+}
+
+.measure-sm {
+  max-width: var(--measure-sm);
+}
+
+.measure-md {
+  max-width: var(--measure-md);
+}
+
+.measure-lg {
+  max-width: var(--measure-lg);
+}
+
+/* ---- Reveal on scroll (subtle, opt-in) ------------------------------ */
+.reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-distance));
+  transition:
+    opacity var(--duration-slow) var(--ease-out),
+    transform var(--duration-slow) var(--ease-out);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

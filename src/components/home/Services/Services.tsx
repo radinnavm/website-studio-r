@@ -1,11 +1,12 @@
 import { Link } from 'react-router-dom'
 
 import { Container } from '@/components/ui/Container'
-import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Section } from '@/components/ui/Section'
+import { SectionHeader } from '@/components/ui/SectionHeader'
 import type { Localized } from '@/lib/i18n'
 import { useLocale } from '@/lib/LocaleProvider'
 import { getServices } from '@/lib/services'
+import { revealClass, useReveal } from '@/lib/useReveal'
 
 import styles from './Services.module.css'
 
@@ -28,19 +29,20 @@ export function Services() {
   const { locale, l } = useLocale()
   const t = copy[locale]
   const services = getServices(locale)
+  const { ref, visible } = useReveal<HTMLUListElement>()
 
   return (
     <Section id="services" aria-labelledby="services-heading">
       <Container>
-        <header className={styles.header}>
-          <Eyebrow>{t.eyebrow}</Eyebrow>
-          <h2 id="services-heading" className={styles.title}>
-            {t.title}
-          </h2>
-          <p className={styles.intro}>{t.intro}</p>
-        </header>
+        <SectionHeader
+          id="services-heading"
+          index="01"
+          eyebrow={t.eyebrow}
+          title={t.title}
+          lead={t.intro}
+        />
 
-        <ul className={styles.list}>
+        <ul ref={ref} className={revealClass(styles.list, visible)}>
           {services.map((service) => (
             <li key={service.id} className={styles.item}>
               <span className={styles.index} aria-hidden="true">

@@ -46,7 +46,7 @@
 .input:hover,
 .select:hover,
 .textarea:hover {
-  border-color: var(--color-taupe-deep);
+  border-color: var(--color-burgundy);
 }
 
 .input[aria-invalid='true'],
@@ -86,7 +86,7 @@
   width: 1.1rem;
   height: 1.1rem;
   margin-top: 0.2rem;
-  accent-color: var(--color-taupe-deep);
+  accent-color: var(--color-burgundy);
 }
 
 .inlineLink {

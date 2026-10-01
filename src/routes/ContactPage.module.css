@@ -68,7 +68,7 @@
 }
 
 .link:hover {
-  border-color: var(--color-ink);
+  border-color: var(--color-burgundy);
 }
 
 .steps {
@@ -109,7 +109,7 @@
   font-family: var(--font-display);
   font-style: italic;
   font-size: var(--text-lg);
-  color: var(--color-taupe);
+  color: var(--color-burgundy);
 }
 
 @media (min-width: 900px) {

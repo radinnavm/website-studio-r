@@ -1,16 +1,7 @@
-.header {
-  max-width: 44rem;
-  margin-bottom: clamp(2.5rem, 5vw, 4rem);
-}
-
-.title {
-  margin-top: var(--space-5);
-}
-
 .cases {
   display: flex;
   flex-direction: column;
-  gap: clamp(3rem, 6vw, 5rem);
+  gap: clamp(3rem, 6vw, 5.5rem);
 }
 
 .case {
@@ -51,7 +42,7 @@
   font-size: var(--text-xs);
   letter-spacing: var(--tracking-wide);
   text-transform: uppercase;
-  color: var(--color-taupe-deep);
+  color: var(--color-burgundy);
 }
 
 .name {
@@ -71,7 +62,7 @@
 .description {
   margin: 0;
   font-size: var(--text-base);
-  max-width: 34rem;
+  max-width: var(--measure-sm);
 }
 
 .tags {
@@ -98,5 +89,10 @@
   .case {
     grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
     gap: clamp(2.5rem, 5vw, 5rem);
+  }
+
+  /* Alternate the media side for an editorial rhythm. */
+  .case:nth-child(even) .media {
+    order: 2;
   }
 }

@@ -2,12 +2,13 @@ import { Link } from 'react-router-dom'
 
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
-import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Section } from '@/components/ui/Section'
+import { SectionHeader } from '@/components/ui/SectionHeader'
 import type { Localized } from '@/lib/i18n'
 import { useLocale } from '@/lib/LocaleProvider'
 import { getProjects } from '@/lib/portfolio'
 import { ui } from '@/lib/ui'
+import { revealClass, useReveal } from '@/lib/useReveal'
 
 import styles from './SelectedWork.module.css'
 
@@ -20,18 +21,19 @@ export function SelectedWork() {
   const { locale, l } = useLocale()
   const t = ui[locale].work
   const projects = getProjects(locale)
+  const { ref, visible } = useReveal<HTMLDivElement>()
 
   return (
     <Section id="work" tone="deep" aria-labelledby="work-heading">
       <Container>
-        <header className={styles.header}>
-          <Eyebrow>{t.eyebrow}</Eyebrow>
-          <h2 id="work-heading" className={styles.title}>
-            {title[locale]}
-          </h2>
-        </header>
+        <SectionHeader
+          id="work-heading"
+          index="02"
+          eyebrow={t.eyebrow}
+          title={title[locale]}
+        />
 
-        <div className={styles.cases}>
+        <div ref={ref} className={revealClass(styles.cases, visible)}>
           {projects.map((project) => {
             const href = l(`/portfolio/${project.slug}`)
 

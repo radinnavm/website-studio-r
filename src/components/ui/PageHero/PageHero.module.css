@@ -1,9 +1,12 @@
 .hero {
-  padding-block: clamp(2.5rem, 6vw, 5rem) clamp(3rem, 7vw, 6rem);
+  position: relative;
+  padding-block: clamp(3rem, 7vw, 6rem) clamp(3.5rem, 8vw, 6.5rem);
+  background-color: var(--color-bg-deep);
+  border-bottom: 1px solid var(--color-line-soft);
 }
 
 .inner {
-  max-width: 60rem;
+  max-width: 62rem;
 }
 
 .breadcrumbs {
@@ -17,19 +20,21 @@
 .title {
   margin-top: var(--space-5);
   font-size: var(--text-3xl);
-  max-width: 20ch;
+  max-width: 22ch;
 }
 
 .title em {
   font-style: italic;
-  color: var(--color-taupe-deep);
+  color: var(--color-burgundy);
 }
 
 .lead {
   margin-top: var(--space-6);
   font-size: var(--text-md);
   line-height: var(--leading-relaxed);
-  max-width: 40rem;
+  color: var(--color-ink-soft);
+  max-width: var(--measure-md);
+  text-wrap: pretty;
 }
 
 .actions {

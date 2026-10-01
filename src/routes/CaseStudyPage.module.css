@@ -27,15 +27,6 @@
   color: var(--color-muted);
 }
 
-.header {
-  max-width: 44rem;
-  margin-bottom: clamp(2rem, 4vw, 3rem);
-}
-
-.title {
-  margin-top: var(--space-5);
-}
-
 .techList {
   display: flex;
   flex-wrap: wrap;
@@ -49,6 +40,14 @@
   color: var(--color-muted);
   border: 1px solid var(--color-line-strong);
   border-radius: var(--radius-pill);
+  transition:
+    color var(--duration-base) var(--ease-out),
+    border-color var(--duration-base) var(--ease-out);
+}
+
+.tech:hover {
+  color: var(--color-burgundy);
+  border-color: var(--color-burgundy);
 }
 
 .note {

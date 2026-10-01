@@ -4,7 +4,9 @@ import styles from './Eyebrow.module.css'
 
 type EyebrowProps = {
   children: ReactNode
-  /** Renders a short rule before the label for editorial framing. */
+  /** Optional editorial marker, e.g. "01" — rendered as "01 / Label". */
+  index?: string
+  /** Renders a short rule before the label when no index is provided. */
   withRule?: boolean
   /** Element to render — use "span" inside links to keep valid HTML. */
   as?: 'p' | 'span'
@@ -13,6 +15,7 @@ type EyebrowProps = {
 
 export function Eyebrow({
   children,
+  index,
   withRule = true,
   as = 'p',
   className,
@@ -22,7 +25,16 @@ export function Eyebrow({
 
   return (
     <Tag className={classes}>
-      {withRule && <span className={styles.rule} aria-hidden="true" />}
+      {index ? (
+        <>
+          <span className={styles.index}>{index}</span>
+          <span className={styles.slash} aria-hidden="true">
+            /
+          </span>
+        </>
+      ) : (
+        withRule && <span className={styles.rule} aria-hidden="true" />
+      )}
       <span>{children}</span>
     </Tag>
   )

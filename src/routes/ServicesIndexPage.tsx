@@ -10,6 +10,7 @@ import { useLocale } from '@/lib/LocaleProvider'
 import { useSeo } from '@/lib/seo'
 import { getPageSeo } from '@/lib/seoHead'
 import { getServices } from '@/lib/services'
+import { revealClass, useReveal } from '@/lib/useReveal'
 
 import styles from './ServicesIndexPage.module.css'
 
@@ -47,6 +48,7 @@ export function ServicesIndexPage() {
   const { locale, l } = useLocale()
   const t = copy[locale]
   const services = getServices(locale)
+  const { ref, visible } = useReveal<HTMLUListElement>()
 
   useSeo(getPageSeo('/uslugi', locale))
 
@@ -54,6 +56,7 @@ export function ServicesIndexPage() {
     <>
       <PageHero
         eyebrow={t.hero.eyebrow}
+        index="01"
         title={t.hero.title}
         accent={t.hero.accent}
         lead={t.hero.lead}
@@ -69,7 +72,7 @@ export function ServicesIndexPage() {
             {t.heading}
           </h2>
 
-          <ul className={styles.list}>
+          <ul ref={ref} className={revealClass(styles.list, visible)}>
             {services.map((service) => (
               <li key={service.id} className={styles.item}>
                 <span className={styles.index} aria-hidden="true">

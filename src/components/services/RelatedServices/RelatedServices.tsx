@@ -1,26 +1,30 @@
 import { Link } from 'react-router-dom'
 
 import { Container } from '@/components/ui/Container'
-import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Section } from '@/components/ui/Section'
+import { SectionHeader } from '@/components/ui/SectionHeader'
 import { useLocale } from '@/lib/LocaleProvider'
 import type { ServicePage } from '@/lib/services'
 import { ui } from '@/lib/ui'
+import { revealClass, useReveal } from '@/lib/useReveal'
 
 import styles from './RelatedServices.module.css'
 
 type RelatedServicesProps = {
   services: ServicePage[]
   id?: string
+  index?: string
 }
 
 /** Compact editorial list linking a service page to related services. */
 export function RelatedServices({
   services,
   id = 'related',
+  index,
 }: RelatedServicesProps) {
   const { locale, l } = useLocale()
   const t = ui[locale].related
+  const { ref, visible } = useReveal<HTMLUListElement>()
 
   if (services.length === 0) return null
 
@@ -29,14 +33,14 @@ export function RelatedServices({
   return (
     <Section id={id} aria-labelledby={headingId}>
       <Container>
-        <header className={styles.header}>
-          <Eyebrow>{t.eyebrow}</Eyebrow>
-          <h2 id={headingId} className={styles.title}>
-            {t.title}
-          </h2>
-        </header>
+        <SectionHeader
+          id={headingId}
+          index={index}
+          eyebrow={t.eyebrow}
+          title={t.title}
+        />
 
-        <ul className={styles.list}>
+        <ul ref={ref} className={revealClass(styles.list, visible)}>
           {services.map((service) => (
             <li key={service.id} className={styles.item}>
               <Link className={styles.link} to={l(`/${service.slug}`)}>

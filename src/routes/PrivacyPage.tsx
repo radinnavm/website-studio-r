@@ -20,6 +20,7 @@ export function PrivacyPage() {
     <>
       <PageHero
         eyebrow={t.hero.eyebrow}
+        index="01"
         title={t.hero.title}
         accent={t.hero.accent}
         lead={t.hero.lead}

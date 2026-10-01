@@ -9,6 +9,7 @@ import styles from './CtaBanner.module.css'
 
 type CtaBannerProps = {
   eyebrow?: string
+  index?: string
   title?: string
   lead?: string
   primaryLabel?: string
@@ -21,6 +22,7 @@ type CtaBannerProps = {
 /** Reusable closing call-to-action band used across interior pages. */
 export function CtaBanner({
   eyebrow,
+  index,
   title,
   lead,
   primaryLabel,
@@ -34,30 +36,43 @@ export function CtaBanner({
   const headingId = `${id}-heading`
 
   return (
-    <Section id={id} tone="inverse" aria-labelledby={headingId}>
+    <Section id={id} tone="burgundy" aria-labelledby={headingId}>
       <Container>
-        <div className={styles.inner}>
-          <Eyebrow className={styles.eyebrow}>{eyebrow ?? t.eyebrow}</Eyebrow>
+        <div className={styles.stage}>
+          <span className={styles.watermark} aria-hidden="true">
+            R
+          </span>
 
-          <h2 id={headingId} className={styles.title}>
-            {title ?? t.title}
-          </h2>
+          <div className={styles.inner}>
+            <Eyebrow className={styles.eyebrow} index={index}>
+              {eyebrow ?? t.eyebrow}
+            </Eyebrow>
 
-          <p className={styles.lead}>{lead ?? t.lead}</p>
+            <h2 id={headingId} className={styles.title}>
+              {title ?? t.title}
+            </h2>
 
-          <div className={styles.actions}>
-            <Button href={l(primaryHref)} variant="inverse" size="lg" withArrow>
-              {primaryLabel ?? t.primary}
-            </Button>
-            {secondaryLabel && secondaryHref && (
+            <p className={styles.lead}>{lead ?? t.lead}</p>
+
+            <div className={styles.actions}>
               <Button
-                href={l(secondaryHref)}
-                variant="outline-inverse"
+                href={l(primaryHref)}
+                variant="inverse"
                 size="lg"
+                withArrow
               >
-                {secondaryLabel}
+                {primaryLabel ?? t.primary}
               </Button>
-            )}
+              {secondaryLabel && secondaryHref && (
+                <Button
+                  href={l(secondaryHref)}
+                  variant="outline-inverse"
+                  size="lg"
+                >
+                  {secondaryLabel}
+                </Button>
+              )}
+            </div>
           </div>
         </div>
       </Container>

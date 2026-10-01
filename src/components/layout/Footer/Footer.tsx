@@ -30,7 +30,7 @@ export function Footer() {
               {site.email}
             </a>
             <div className={styles.brandCta}>
-              <Button href={l(contactHref)} variant="secondary">
+              <Button href={l(contactHref)} variant="outline-inverse">
                 {t.footer.cta}
               </Button>
             </div>
@@ -62,7 +62,7 @@ export function Footer() {
             </ul>
           </nav>
 
-          <div className={styles.column}>
+          <div className={`${styles.column} ${styles.contact}`}>
             <h2 className={styles.heading}>{t.footer.contact}</h2>
             <ul className={styles.list}>
               <li>

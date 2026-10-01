@@ -1,25 +1,28 @@
 import { Container } from '@/components/ui/Container'
-import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Section } from '@/components/ui/Section'
+import { SectionHeader } from '@/components/ui/SectionHeader'
 import { useLocale } from '@/lib/LocaleProvider'
 import type { ProcessStep } from '@/lib/content'
 import { ui } from '@/lib/ui'
+import { revealClass, useReveal } from '@/lib/useReveal'
 
 import styles from './StepsSection.module.css'
 
 type StepsSectionProps = {
   steps: ProcessStep[]
   eyebrow?: string
+  index?: string
   title?: string
   intro?: string
   id?: string
-  tone?: 'default' | 'deep'
+  tone?: 'default' | 'deep' | 'surface'
 }
 
 /** Reusable numbered process section. */
 export function StepsSection({
   steps,
   eyebrow,
+  index,
   title,
   intro,
   id = 'process',
@@ -27,11 +30,11 @@ export function StepsSection({
 }: StepsSectionProps) {
   const { locale } = useLocale()
   const t = ui[locale]
+  const { ref, visible } = useReveal<HTMLOListElement>()
 
   if (steps.length === 0) return null
 
   const resolvedEyebrow = eyebrow ?? t.steps.eyebrow
-
   const headingId = `${id}-heading`
 
   return (
@@ -41,17 +44,17 @@ export function StepsSection({
       aria-labelledby={title ? headingId : undefined}
     >
       <Container>
-        <header className={styles.header}>
-          <Eyebrow>{resolvedEyebrow}</Eyebrow>
-          {title && (
-            <h2 id={headingId} className={styles.title}>
-              {title}
-            </h2>
-          )}
-          {intro && <p className={styles.intro}>{intro}</p>}
-        </header>
+        {title && (
+          <SectionHeader
+            id={headingId}
+            index={index}
+            eyebrow={resolvedEyebrow}
+            title={title}
+            lead={intro}
+          />
+        )}
 
-        <ol className={styles.steps}>
+        <ol ref={ref} className={revealClass(styles.steps, visible)}>
           {steps.map((step) => (
             <li key={step.step} className={styles.step}>
               <span className={styles.stepIndex} aria-hidden="true">

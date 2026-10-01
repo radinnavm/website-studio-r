@@ -45,7 +45,7 @@
 
 .panelMark {
   font-style: italic;
-  color: var(--color-taupe-deep);
+  color: var(--color-burgundy);
 }
 
 .close {
@@ -103,7 +103,7 @@
 
 .link:hover,
 .linkActive {
-  color: var(--color-taupe-deep);
+  color: var(--color-burgundy);
 }
 
 .footer {

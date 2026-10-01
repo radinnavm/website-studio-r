@@ -56,21 +56,21 @@
 /* ---- Variants ------------------------------------------------------- */
 
 .primary {
-  background-color: var(--color-ink);
+  background-color: var(--color-burgundy);
   color: var(--color-inverse-ink);
-  border-color: var(--color-ink);
+  border-color: var(--color-burgundy);
 }
 
 .primary:hover {
-  background-color: var(--color-taupe-deep);
-  border-color: var(--color-taupe-deep);
+  background-color: var(--color-burgundy-deep);
+  border-color: var(--color-burgundy-deep);
   color: var(--color-inverse-ink);
 }
 
 .secondary {
   background-color: transparent;
   color: var(--color-ink);
-  border-color: var(--color-line-strong);
+  border-color: var(--color-ink);
 }
 
 .secondary:hover {
@@ -92,7 +92,11 @@
 }
 
 .ghost:hover .label {
-  border-color: var(--color-ink);
+  border-color: var(--color-burgundy);
+}
+
+.ghost:hover {
+  color: var(--color-burgundy);
 }
 
 .inverse {

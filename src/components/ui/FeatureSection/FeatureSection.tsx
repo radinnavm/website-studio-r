@@ -1,6 +1,7 @@
 import { Container } from '@/components/ui/Container'
-import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Section } from '@/components/ui/Section'
+import { SectionHeader } from '@/components/ui/SectionHeader'
+import { revealClass, useReveal } from '@/lib/useReveal'
 
 import styles from './FeatureSection.module.css'
 
@@ -12,21 +13,25 @@ export type FeatureItem = {
 type FeatureSectionProps = {
   items: FeatureItem[]
   eyebrow?: string
+  index?: string
   title?: string
   intro?: string
   id?: string
-  tone?: 'default' | 'deep'
+  tone?: 'default' | 'deep' | 'surface'
 }
 
 /** Reusable grid of titled features / deliverables. */
 export function FeatureSection({
   items,
   eyebrow,
+  index,
   title,
   intro,
   id = 'features',
   tone = 'default',
 }: FeatureSectionProps) {
+  const { ref, visible } = useReveal<HTMLUListElement>()
+
   if (items.length === 0) return null
 
   const headingId = `${id}-heading`
@@ -38,19 +43,22 @@ export function FeatureSection({
       aria-labelledby={title ? headingId : undefined}
     >
       <Container>
-        <header className={styles.header}>
-          {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-          {title && (
-            <h2 id={headingId} className={styles.title}>
-              {title}
-            </h2>
-          )}
-          {intro && <p className={styles.intro}>{intro}</p>}
-        </header>
+        {title && (
+          <SectionHeader
+            id={headingId}
+            index={index}
+            eyebrow={eyebrow}
+            title={title}
+            lead={intro}
+          />
+        )}
 
-        <ul className={styles.grid}>
-          {items.map((item) => (
+        <ul ref={ref} className={revealClass(styles.grid, visible)}>
+          {items.map((item, position) => (
             <li key={item.title} className={styles.item}>
+              <span className={styles.itemIndex} aria-hidden="true">
+                {String(position + 1).padStart(2, '0')}
+              </span>
               <h3 className={styles.itemTitle}>{item.title}</h3>
               <p className={styles.itemText}>{item.description}</p>
             </li>

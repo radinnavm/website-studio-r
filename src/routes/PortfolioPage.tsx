@@ -3,15 +3,16 @@ import { Link } from 'react-router-dom'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { CtaBanner } from '@/components/ui/CtaBanner'
-import { Eyebrow } from '@/components/ui/Eyebrow'
 import { PageHero } from '@/components/ui/PageHero'
 import { Section } from '@/components/ui/Section'
+import { SectionHeader } from '@/components/ui/SectionHeader'
 import type { Localized } from '@/lib/i18n'
 import { useLocale } from '@/lib/LocaleProvider'
 import { getFeaturedProject, getProjects } from '@/lib/portfolio'
 import { useSeo } from '@/lib/seo'
 import { getPageSeo } from '@/lib/seoHead'
 import { ui } from '@/lib/ui'
+import { revealClass, useReveal } from '@/lib/useReveal'
 
 import styles from './PortfolioPage.module.css'
 
@@ -51,6 +52,10 @@ export function PortfolioPage() {
   const uiT = ui[locale]
   const featuredProject = getFeaturedProject(locale)
   const collection = getProjects(locale).filter((project) => !project.featured)
+  const { ref: featuredRef, visible: featuredVisible } =
+    useReveal<HTMLElement>()
+  const { ref: collectionRef, visible: collectionVisible } =
+    useReveal<HTMLUListElement>()
 
   useSeo(getPageSeo('/portfolio', locale))
 
@@ -58,6 +63,7 @@ export function PortfolioPage() {
     <>
       <PageHero
         eyebrow={t.hero.eyebrow}
+        index="01"
         title={t.hero.title}
         accent={t.hero.accent}
         lead={t.hero.lead}
@@ -70,14 +76,17 @@ export function PortfolioPage() {
       {featuredProject && (
         <Section id="featured" tone="deep" aria-labelledby="featured-heading">
           <Container>
-            <header className={styles.header}>
-              <Eyebrow>{t.featured}</Eyebrow>
-              <h2 id="featured-heading" className={styles.title}>
-                {featuredProject.name}
-              </h2>
-            </header>
+            <SectionHeader
+              id="featured-heading"
+              index="02"
+              eyebrow={t.featured}
+              title={featuredProject.name}
+            />
 
-            <article className={styles.featured}>
+            <article
+              ref={featuredRef}
+              className={revealClass(styles.featured, featuredVisible)}
+            >
               <Link
                 className={styles.media}
                 to={l(`/portfolio/${featuredProject.slug}`)}
@@ -137,14 +146,17 @@ export function PortfolioPage() {
       {collection.length > 0 && (
         <Section aria-labelledby="collection-heading">
           <Container>
-            <header className={styles.header}>
-              <Eyebrow>{t.more}</Eyebrow>
-              <h2 id="collection-heading" className={styles.title}>
-                {t.collection}
-              </h2>
-            </header>
+            <SectionHeader
+              id="collection-heading"
+              index="03"
+              eyebrow={t.more}
+              title={t.collection}
+            />
 
-            <ul className={styles.grid}>
+            <ul
+              ref={collectionRef}
+              className={revealClass(styles.grid, collectionVisible)}
+            >
               {collection.map((project) => (
                 <li key={project.id} className={styles.card}>
                   <Link
@@ -186,7 +198,7 @@ export function PortfolioPage() {
         </Section>
       )}
 
-      <CtaBanner />
+      <CtaBanner index="04" />
     </>
   )
 }

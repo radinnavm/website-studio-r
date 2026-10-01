@@ -3,11 +3,11 @@ import { useParams } from 'react-router-dom'
 import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { CtaBanner } from '@/components/ui/CtaBanner'
-import { Eyebrow } from '@/components/ui/Eyebrow'
 import { FeatureSection } from '@/components/ui/FeatureSection'
 import { PageHero } from '@/components/ui/PageHero'
 import { ProseSection } from '@/components/ui/ProseSection'
 import { Section } from '@/components/ui/Section'
+import { SectionHeader } from '@/components/ui/SectionHeader'
 import type { Localized } from '@/lib/i18n'
 import { useLocale } from '@/lib/LocaleProvider'
 import { getProjectBySlug } from '@/lib/portfolio'
@@ -87,6 +87,7 @@ function CaseStudyView({
     <>
       <PageHero
         eyebrow={project.category}
+        index="01"
         title={project.name}
         lead={project.summary}
         breadcrumbs={[
@@ -128,6 +129,7 @@ function CaseStudyView({
 
       <ProseSection
         id="overview"
+        index="02"
         eyebrow={t.overview.eyebrow}
         title={t.overview.title}
         paragraphs={study.overview}
@@ -136,6 +138,7 @@ function CaseStudyView({
       <ProseSection
         id="challenge"
         tone="deep"
+        index="03"
         eyebrow={t.challenge.eyebrow}
         title={t.challenge.title}
         paragraphs={study.challenge}
@@ -143,6 +146,7 @@ function CaseStudyView({
 
       <ProseSection
         id="approach"
+        index="04"
         eyebrow={t.approach.eyebrow}
         title={t.approach.title}
         paragraphs={study.approach}
@@ -151,6 +155,7 @@ function CaseStudyView({
       <ProseSection
         id="role"
         tone="deep"
+        index="05"
         eyebrow={t.role.eyebrow}
         title={t.role.title}
         paragraphs={study.role}
@@ -158,6 +163,7 @@ function CaseStudyView({
 
       <ProseSection
         id="responsive"
+        index="06"
         eyebrow={t.responsive.eyebrow}
         title={t.responsive.title}
         paragraphs={study.responsive}
@@ -165,12 +171,12 @@ function CaseStudyView({
 
       <Section id="technology" tone="deep" aria-labelledby="technology-heading">
         <Container>
-          <header className={styles.header}>
-            <Eyebrow>{t.technology.eyebrow}</Eyebrow>
-            <h2 id="technology-heading" className={styles.title}>
-              {t.technology.title}
-            </h2>
-          </header>
+          <SectionHeader
+            id="technology-heading"
+            index="07"
+            eyebrow={t.technology.eyebrow}
+            title={t.technology.title}
+          />
 
           <ul className={styles.techList}>
             {project.technologies.map((technology) => (
@@ -186,6 +192,7 @@ function CaseStudyView({
 
       <ProseSection
         id="features"
+        index="08"
         eyebrow={t.features.eyebrow}
         title={t.features.title}
         bullets={study.features}
@@ -194,6 +201,7 @@ function CaseStudyView({
       <FeatureSection
         id="decisions"
         tone="deep"
+        index="09"
         eyebrow={t.decisions.eyebrow}
         title={t.decisions.title}
         items={study.technicalDecisions.map((decision) => ({
@@ -202,7 +210,7 @@ function CaseStudyView({
         }))}
       />
 
-      <CtaBanner id="case-cta" title={uiT.ctaBanner.title} />
+      <CtaBanner id="case-cta" index="10" title={uiT.ctaBanner.title} />
     </>
   )
 }

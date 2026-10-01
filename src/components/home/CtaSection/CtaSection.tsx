@@ -35,42 +35,55 @@ export function CtaSection() {
   const site = getSite(locale)
 
   return (
-    <Section id="contact" tone="inverse" aria-labelledby="contact-heading">
+    <Section id="contact" tone="burgundy" aria-labelledby="contact-heading">
       <Container>
-        <div className={styles.inner}>
-          <Eyebrow className={styles.eyebrow}>{t.eyebrow}</Eyebrow>
+        <div className={styles.stage}>
+          <span className={styles.watermark} aria-hidden="true">
+            R
+          </span>
 
-          <h2 id="contact-heading" className={styles.title}>
-            {t.title}
-          </h2>
+          <div className={styles.inner}>
+            <Eyebrow className={styles.eyebrow} index="05">
+              {t.eyebrow}
+            </Eyebrow>
 
-          <p className={styles.lead}>{t.lead}</p>
+            <h2 id="contact-heading" className={styles.title}>
+              {t.title}
+            </h2>
 
-          <div className={styles.actions}>
-            <Button href={l(contactHref)} variant="inverse" size="lg" withArrow>
-              {t.primary}
-            </Button>
-            <Button href={site.phoneHref} variant="outline-inverse" size="lg">
-              {site.phone}
-            </Button>
+            <p className={styles.lead}>{t.lead}</p>
+
+            <div className={styles.actions}>
+              <Button
+                href={l(contactHref)}
+                variant="inverse"
+                size="lg"
+                withArrow
+              >
+                {t.primary}
+              </Button>
+              <Button href={site.phoneHref} variant="outline-inverse" size="lg">
+                {site.phone}
+              </Button>
+            </div>
+
+            <ul className={styles.details}>
+              <li>
+                <span className={styles.detailLabel}>
+                  {ui[locale].contactPage.email}
+                </span>
+                <a href={`mailto:${site.email}`}>{site.email}</a>
+              </li>
+              <li>
+                <span className={styles.detailLabel}>
+                  {ui[locale].contactPage.location}
+                </span>
+                <span>
+                  {site.address.city}, {site.address.country}
+                </span>
+              </li>
+            </ul>
           </div>
-
-          <ul className={styles.details}>
-            <li>
-              <span className={styles.detailLabel}>
-                {ui[locale].contactPage.email}
-              </span>
-              <a href={`mailto:${site.email}`}>{site.email}</a>
-            </li>
-            <li>
-              <span className={styles.detailLabel}>
-                {ui[locale].contactPage.location}
-              </span>
-              <span>
-                {site.address.city}, {site.address.country}
-              </span>
-            </li>
-          </ul>
         </div>
       </Container>
     </Section>

@@ -1,26 +1,49 @@
+.stage {
+  position: relative;
+}
+
+.watermark {
+  position: absolute;
+  top: 50%;
+  right: -1rem;
+  z-index: 0;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(9rem, 34vw, 22rem);
+  line-height: 0.8;
+  color: var(--color-inverse-ink);
+  opacity: 0.05;
+  pointer-events: none;
+  user-select: none;
+}
+
 .inner {
-  max-width: 56rem;
+  position: relative;
+  z-index: 1;
+  max-width: 58rem;
 }
 
 .eyebrow {
-  color: var(--color-taupe);
+  color: var(--color-burgundy-muted);
 }
 
-.eyebrow span:last-child {
-  color: var(--color-taupe);
+.eyebrow span {
+  color: var(--color-burgundy-muted);
 }
 
 .title {
-  margin-top: var(--space-5);
-  font-size: var(--text-2xl);
-  max-width: 24ch;
+  margin-top: var(--space-6);
+  font-size: var(--text-3xl);
+  line-height: var(--leading-tight);
+  max-width: 18ch;
 }
 
 .lead {
   margin-top: var(--space-6);
   font-size: var(--text-md);
   line-height: var(--leading-relaxed);
-  max-width: 38rem;
+  max-width: var(--measure-sm);
 }
 
 .actions {
@@ -61,4 +84,11 @@
 
 .details a:hover {
   border-color: var(--color-inverse-ink);
+}
+
+@media (max-width: 480px) {
+  .watermark {
+    right: -0.5rem;
+    opacity: 0.04;
+  }
 }

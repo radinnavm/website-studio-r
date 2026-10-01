@@ -10,6 +10,7 @@ import styles from './PageHero.module.css'
 
 type PageHeroProps = {
   eyebrow?: string
+  index?: string
   title: string
   accent?: string
   lead?: string
@@ -21,6 +22,7 @@ type PageHeroProps = {
 /** Shared interior-page hero: breadcrumbs, eyebrow, H1, lead and actions. */
 export function PageHero({
   eyebrow,
+  index,
   title,
   accent,
   lead,
@@ -36,7 +38,11 @@ export function PageHero({
             <Breadcrumbs items={breadcrumbs} className={styles.breadcrumbs} />
           )}
 
-          {eyebrow && <Eyebrow className={styles.eyebrow}>{eyebrow}</Eyebrow>}
+          {eyebrow && (
+            <Eyebrow className={styles.eyebrow} index={index}>
+              {eyebrow}
+            </Eyebrow>
+          )}
 
           <h1 className={styles.title}>
             {title}

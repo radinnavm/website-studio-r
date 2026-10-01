@@ -2,7 +2,7 @@ import type { ElementType, ReactNode } from 'react'
 
 import styles from './Section.module.css'
 
-type SectionTone = 'default' | 'deep' | 'inverse'
+type SectionTone = 'default' | 'deep' | 'surface' | 'inverse' | 'burgundy'
 type SectionSize = 'default' | 'tight' | 'flush'
 
 type SectionProps = {
