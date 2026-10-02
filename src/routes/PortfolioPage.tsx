@@ -63,7 +63,6 @@ export function PortfolioPage() {
     <>
       <PageHero
         eyebrow={t.hero.eyebrow}
-        index="01"
         title={t.hero.title}
         accent={t.hero.accent}
         lead={t.hero.lead}
@@ -78,7 +77,6 @@ export function PortfolioPage() {
           <Container>
             <SectionHeader
               id="featured-heading"
-              index="02"
               eyebrow={t.featured}
               title={featuredProject.name}
             />
@@ -148,7 +146,6 @@ export function PortfolioPage() {
           <Container>
             <SectionHeader
               id="collection-heading"
-              index="03"
               eyebrow={t.more}
               title={t.collection}
             />
@@ -198,7 +195,7 @@ export function PortfolioPage() {
         </Section>
       )}
 
-      <CtaBanner index="04" />
+      <CtaBanner />
     </>
   )
 }

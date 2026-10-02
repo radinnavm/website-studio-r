@@ -87,7 +87,6 @@ function CaseStudyView({
     <>
       <PageHero
         eyebrow={project.category}
-        index="01"
         title={project.name}
         lead={project.summary}
         breadcrumbs={[
@@ -129,7 +128,6 @@ function CaseStudyView({
 
       <ProseSection
         id="overview"
-        index="02"
         eyebrow={t.overview.eyebrow}
         title={t.overview.title}
         paragraphs={study.overview}
@@ -138,7 +136,6 @@ function CaseStudyView({
       <ProseSection
         id="challenge"
         tone="deep"
-        index="03"
         eyebrow={t.challenge.eyebrow}
         title={t.challenge.title}
         paragraphs={study.challenge}
@@ -146,7 +143,6 @@ function CaseStudyView({
 
       <ProseSection
         id="approach"
-        index="04"
         eyebrow={t.approach.eyebrow}
         title={t.approach.title}
         paragraphs={study.approach}
@@ -155,7 +151,6 @@ function CaseStudyView({
       <ProseSection
         id="role"
         tone="deep"
-        index="05"
         eyebrow={t.role.eyebrow}
         title={t.role.title}
         paragraphs={study.role}
@@ -163,7 +158,6 @@ function CaseStudyView({
 
       <ProseSection
         id="responsive"
-        index="06"
         eyebrow={t.responsive.eyebrow}
         title={t.responsive.title}
         paragraphs={study.responsive}
@@ -173,7 +167,6 @@ function CaseStudyView({
         <Container>
           <SectionHeader
             id="technology-heading"
-            index="07"
             eyebrow={t.technology.eyebrow}
             title={t.technology.title}
           />
@@ -192,7 +185,6 @@ function CaseStudyView({
 
       <ProseSection
         id="features"
-        index="08"
         eyebrow={t.features.eyebrow}
         title={t.features.title}
         bullets={study.features}
@@ -201,7 +193,6 @@ function CaseStudyView({
       <FeatureSection
         id="decisions"
         tone="deep"
-        index="09"
         eyebrow={t.decisions.eyebrow}
         title={t.decisions.title}
         items={study.technicalDecisions.map((decision) => ({
@@ -210,7 +201,7 @@ function CaseStudyView({
         }))}
       />
 
-      <CtaBanner id="case-cta" index="10" title={uiT.ctaBanner.title} />
+      <CtaBanner id="case-cta" title={uiT.ctaBanner.title} />
     </>
   )
 }
