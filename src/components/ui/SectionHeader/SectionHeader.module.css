@@ -17,7 +17,7 @@
   margin-top: var(--space-6);
   font-size: var(--text-md);
   line-height: var(--leading-relaxed);
-  color: var(--color-muted);
+  color: var(--color-ink-soft);
   max-width: var(--measure-md);
   text-wrap: pretty;
 }

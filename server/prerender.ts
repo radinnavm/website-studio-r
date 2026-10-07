@@ -9,7 +9,6 @@ import { getProjects } from '../src/lib/portfolio.ts'
 import { toLocalizedPath } from '../src/lib/routeMap.ts'
 import { getHeadValues, getPageSeo } from '../src/lib/seoHead.ts'
 import type { HeadValues } from '../src/lib/seoHead.ts'
-import { getServices } from '../src/lib/services.ts'
 import { absoluteUrl } from '../src/lib/url.ts'
 
 function escapeHtml(value: string): string {
@@ -138,7 +137,6 @@ export function indexableBgRoutes(): string[] {
     '/portfolio',
     '/za-nas',
     '/kontakt',
-    ...getServices('bg').map((service) => `/${service.slug}`),
     ...getProjects('bg').map((project) => `/portfolio/${project.slug}`),
   ]
 }

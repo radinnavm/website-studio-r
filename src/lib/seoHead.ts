@@ -10,7 +10,6 @@ import type { Locale } from './i18n.ts'
 import { about } from './about.ts'
 import { privacy } from './privacy.ts'
 import { getProjectBySlug } from './portfolio.ts'
-import { getServiceBySlug } from './services.ts'
 import { toLocalizedPath } from './routeMap.ts'
 import { ui } from './ui.ts'
 import { absoluteUrl } from './url.ts'
@@ -146,15 +145,6 @@ export function getPageSeo(bgPath: string, locale: Locale): PageSeo {
         type: 'article',
       }
     }
-  } else {
-    const service = getServiceBySlug(locale, bgPath.slice(1))
-    if (service) {
-      return {
-        path: bgPath,
-        title: service.meta.title,
-        description: service.meta.description,
-      }
-    }
   }
 
   const nf = notFoundMeta[locale]
@@ -222,14 +212,6 @@ function buildBreadcrumb(
     if (!project) return null
     items.push({ name: labels.portfolioLabel, href: '/portfolio' })
     items.push({ name: project.name })
-  } else if (bgPath.startsWith('/')) {
-    const service = getServiceBySlug(locale, bgPath.slice(1))
-    if (service) {
-      items.push({ name: labels.services, href: '/uslugi' })
-      items.push({ name: service.title })
-    } else {
-      return null
-    }
   } else {
     return null
   }

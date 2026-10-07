@@ -117,6 +117,7 @@
 
 .cardTitle {
   font-family: var(--font-display);
+  font-weight: 600;
   font-size: var(--text-xl);
   letter-spacing: var(--tracking-tight);
   color: var(--color-ink);

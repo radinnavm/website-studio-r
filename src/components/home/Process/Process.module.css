@@ -15,11 +15,33 @@
 }
 
 .stepIndex {
+  position: relative;
+  z-index: 1;
+  align-self: flex-start;
   font-family: var(--font-display);
   font-size: var(--text-2xl);
   font-style: italic;
   line-height: 0.9;
   color: var(--color-burgundy);
+}
+
+/* Oversized editorial watermark behind each number — a soft burgundy shape
+   at a whisper of opacity. It sits behind the text (never a card) and only
+   the shape animates on hover, so the number stays perfectly stable. */
+.stepIndex::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  width: clamp(5rem, 24vw, 8rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-color: rgba(122, 38, 56, 0.06);
+  transform: translate(-50%, -50%);
+  transition:
+    background-color var(--duration-base) var(--ease-out),
+    transform var(--duration-base) var(--ease-out);
 }
 
 .stepTitle {
@@ -118,13 +140,11 @@
   .stepIndex,
   .stepTitle {
     transition:
-      transform var(--duration-base) var(--ease-out),
       color var(--duration-base) var(--ease-out),
       border-color var(--duration-base) var(--ease-out);
   }
 
   .step:hover {
-    transform: translateY(-4px);
     border-top-color: var(--color-burgundy-line);
   }
 
@@ -134,11 +154,16 @@
 
   .step:hover .stepIndex {
     color: var(--color-burgundy-deep);
-    transform: translateY(-2px);
   }
 
   .step:hover .stepTitle {
     color: var(--color-burgundy);
+  }
+
+  /* Gentle lift of the watermark only — the number text stays put. */
+  .step:hover .stepIndex::before {
+    background-color: rgba(122, 38, 56, 0.11);
+    transform: translate(-50%, -50%) scale(1.06) translateX(0.25rem);
   }
 }
 
@@ -146,6 +171,10 @@
   .step:hover,
   .step:hover .stepIndex {
     transform: none;
+  }
+
+  .step:hover .stepIndex::before {
+    transform: translate(-50%, -50%);
   }
 }
 
@@ -165,5 +194,10 @@
   .step:nth-child(n + 2) {
     border-left: 1px solid var(--color-line);
     padding-left: var(--space-6);
+  }
+
+  /* Keep the watermark contained and quiet within the tighter columns. */
+  .stepIndex::before {
+    width: 6.5rem;
   }
 }

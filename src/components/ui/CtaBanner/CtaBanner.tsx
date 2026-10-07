@@ -17,6 +17,8 @@ type CtaBannerProps = {
   secondaryLabel?: string
   secondaryHref?: string
   id?: string
+  /** Opt-in decorative background visual. Kept off by default. */
+  withVisual?: boolean
 }
 
 /** Reusable closing call-to-action band used across interior pages. */
@@ -30,6 +32,7 @@ export function CtaBanner({
   secondaryLabel,
   secondaryHref,
   id = 'cta',
+  withVisual = false,
 }: CtaBannerProps) {
   const { locale, l } = useLocale()
   const t = ui[locale].ctaBanner
@@ -39,6 +42,8 @@ export function CtaBanner({
     <Section id={id} tone="burgundy" aria-labelledby={headingId}>
       <Container>
         <div className={styles.stage}>
+          {withVisual && <CtaVisual />}
+
           <span className={styles.watermark} aria-hidden="true">
             R
           </span>
@@ -77,5 +82,43 @@ export function CtaBanner({
         </div>
       </Container>
     </Section>
+  )
+}
+
+/**
+ * Discreet abstract background for the closing CTA — a fine dot matrix and
+ * concentric rings in the inverse ink, kept low-contrast so the copy and the
+ * call to action stay fully legible.
+ */
+function CtaVisual() {
+  return (
+    <svg
+      className={styles.visual}
+      viewBox="0 0 1200 480"
+      preserveAspectRatio="xMidYMid slice"
+      aria-hidden="true"
+    >
+      <defs>
+        <pattern
+          id="cta-visual-dots"
+          width="26"
+          height="26"
+          patternUnits="userSpaceOnUse"
+        >
+          <circle className={styles.visualDot} cx="1.5" cy="1.5" r="1.5" />
+        </pattern>
+      </defs>
+
+      <rect
+        className={styles.visualDots}
+        width="1200"
+        height="480"
+        fill="url(#cta-visual-dots)"
+      />
+
+      <circle className={styles.visualRing} cx="150" cy="430" r="300" />
+      <circle className={styles.visualRing} cx="150" cy="430" r="210" />
+      <circle className={styles.visualRingAccent} cx="150" cy="430" r="120" />
+    </svg>
   )
 }

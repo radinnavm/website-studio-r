@@ -4,10 +4,11 @@
 }
 
 .item {
+  position: relative;
   display: grid;
-  grid-template-columns: auto 1fr;
-  gap: var(--space-4) var(--space-6);
-  padding-block: clamp(1.75rem, 3vw, 2.75rem);
+  grid-template-columns: 1fr;
+  gap: var(--space-5) var(--space-9);
+  padding-block: clamp(2rem, 4vw, 3rem);
   border-bottom: 1px solid var(--color-line);
   transition: background-color var(--duration-base) var(--ease-out);
 }
@@ -16,13 +17,23 @@
   background-color: var(--color-bg-deep);
 }
 
-.index {
-  font-family: var(--font-display);
-  font-style: italic;
-  font-size: var(--text-lg);
-  line-height: 1;
-  color: var(--color-burgundy);
-  padding-top: 0.35rem;
+/* A burgundy accent line runs down the left edge and reveals on hover —
+   an editorial "index" cue rather than a card treatment. */
+.item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background-color: var(--color-burgundy);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform var(--duration-base) var(--ease-out);
+}
+
+.item:hover::before {
+  transform: scaleY(1);
 }
 
 .body {
@@ -33,33 +44,34 @@
 
 .itemTitle {
   margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
   font-size: var(--text-xl);
+  letter-spacing: var(--tracking-tight);
+  max-width: 26ch;
 }
 
 .itemLink {
-  border-bottom: 1px solid transparent;
-  transition:
-    color var(--duration-base) var(--ease-out),
-    border-color var(--duration-base) var(--ease-out);
+  transition: color var(--duration-base) var(--ease-out);
 }
 
-.itemLink:hover {
+.itemLink:hover,
+.item:hover .itemLink {
   color: var(--color-burgundy);
-  border-color: var(--color-burgundy);
 }
 
 .itemText {
   margin: 0;
   font-size: var(--text-base);
+  color: var(--color-muted);
   max-width: var(--measure-sm);
 }
 
 .points {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2) var(--space-5);
+  gap: var(--space-3) var(--space-6);
   margin: 0;
-  grid-column: 2;
 }
 
 .points li {
@@ -74,9 +86,14 @@
   position: absolute;
   left: 0;
   top: 0.6em;
-  width: 0.5rem;
+  width: 0.625rem;
   height: 1px;
-  background-color: var(--color-taupe);
+  background-color: var(--color-burgundy-line);
+  transition: background-color var(--duration-base) var(--ease-out);
+}
+
+.item:hover .points li::before {
+  background-color: var(--color-burgundy);
 }
 
 /* Subtle staggered entrance once the list is revealed. */
@@ -100,10 +117,6 @@
   animation-delay: calc(var(--stagger) * 4);
 }
 
-.list.is-visible .item:nth-child(6) {
-  animation-delay: calc(var(--stagger) * 5);
-}
-
 @keyframes serviceIn {
   from {
     opacity: 0;
@@ -117,13 +130,12 @@
 
 @media (min-width: 900px) {
   .item {
-    grid-template-columns: 3rem minmax(0, 1fr) 16rem;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 20rem);
     align-items: start;
   }
 
   .points {
-    grid-column: auto;
     flex-direction: column;
-    gap: var(--space-2);
+    gap: var(--space-3);
   }
 }

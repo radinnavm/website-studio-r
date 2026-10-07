@@ -13,8 +13,18 @@ export function Hero() {
 
   return (
     <section className={styles.hero} aria-labelledby="hero-heading">
-      <Container>
-        <div className={styles.inner}>
+      <img
+        className={styles.image}
+        src="/images/full-hero.jpg"
+        alt={hero.imageAlt}
+        width={1600}
+        height={900}
+        fetchPriority="high"
+        decoding="async"
+      />
+
+      <Container className={styles.content}>
+        <div className={styles.copy}>
           <Eyebrow>{hero.eyebrow}</Eyebrow>
 
           <h1 id="hero-heading" className={styles.title}>
@@ -45,15 +55,15 @@ export function Hero() {
               </Button>
             </div>
           </div>
-
-          <ul className={styles.meta}>
-            {hero.meta.map((item) => (
-              <li key={item} className={styles.metaItem}>
-                {item}
-              </li>
-            ))}
-          </ul>
         </div>
+
+        <ul className={styles.meta}>
+          {hero.meta.map((item) => (
+            <li key={item} className={styles.metaItem}>
+              {item}
+            </li>
+          ))}
+        </ul>
       </Container>
     </section>
   )

@@ -5,7 +5,7 @@ import { Section } from '@/components/ui/Section'
 import { SectionHeader } from '@/components/ui/SectionHeader'
 import type { Localized } from '@/lib/i18n'
 import { useLocale } from '@/lib/LocaleProvider'
-import { getServices } from '@/lib/services'
+import { getServiceHref, getServices } from '@/lib/services'
 import { revealClass, useReveal } from '@/lib/useReveal'
 
 import styles from './Services.module.css'
@@ -26,7 +26,7 @@ const copy: Localized<{ eyebrow: string; title: string; intro: string }> = {
 }
 
 export function Services() {
-  const { locale, l } = useLocale()
+  const { locale } = useLocale()
   const t = copy[locale]
   const services = getServices(locale)
   const { ref, visible } = useReveal<HTMLUListElement>()
@@ -36,7 +36,6 @@ export function Services() {
       <Container>
         <SectionHeader
           id="services-heading"
-          index="01"
           eyebrow={t.eyebrow}
           title={t.title}
           lead={t.intro}
@@ -45,12 +44,12 @@ export function Services() {
         <ul ref={ref} className={revealClass(styles.list, visible)}>
           {services.map((service) => (
             <li key={service.id} className={styles.item}>
-              <span className={styles.index} aria-hidden="true">
-                {service.index}
-              </span>
               <div className={styles.body}>
                 <h3 className={styles.itemTitle}>
-                  <Link className={styles.itemLink} to={l(`/${service.slug}`)}>
+                  <Link
+                    className={styles.itemLink}
+                    to={getServiceHref(locale, service)}
+                  >
                     {service.title}
                   </Link>
                 </h3>

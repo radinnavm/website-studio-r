@@ -34,7 +34,7 @@
 
 .title {
   margin-top: var(--space-6);
-  font-size: var(--text-3xl);
+  font-size: var(--text-2xl);
   line-height: var(--leading-tight);
   max-width: 18ch;
 }

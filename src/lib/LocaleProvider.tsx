@@ -21,9 +21,9 @@ type LocaleContextValue = {
 const LocaleContext = createContext<LocaleContextValue | null>(null)
 
 export function LocaleProvider({ children }: { children: ReactNode }) {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
   const locale = getLocaleFromPathname(pathname)
-  const alternateHref = getAlternateHref(pathname)
+  const alternateHref = getAlternateHref(`${pathname}${hash}`)
 
   const value = useMemo<LocaleContextValue>(
     () => ({

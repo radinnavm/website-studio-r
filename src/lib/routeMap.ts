@@ -2,19 +2,26 @@
  * Locale-aware route mapping + known-route checks. Environment-agnostic module
  * used by both the client (LocaleProvider, SEO) and the server (soft-404
  * allowlist) and the build-time prerender.
+ *
+ * Services no longer have dedicated pages: every service is a section on the
+ * services index (`/uslugi` in BG, `/en/services` in EN) addressed by an anchor.
  */
 
 import { getLocaleFromPathname } from './i18n.ts'
 import type { Locale } from './i18n.ts'
 import { getProjects } from './portfolio.ts'
 import { getServices } from './services.ts'
+import type { ServicePage } from './services.ts'
 
 const bgServices = getServices('bg')
-const serviceEnSlug = new Map<string, string>(
-  bgServices.map((s) => [s.slug, s.enSlug]),
+const serviceBySlug = new Map<string, ServicePage>(
+  bgServices.map((s) => [s.slug, s]),
 )
-const serviceBgSlug = new Map<string, string>(
-  bgServices.map((s) => [s.enSlug, s.slug]),
+const serviceByEnSlug = new Map<string, ServicePage>(
+  bgServices.map((s) => [s.enSlug, s]),
+)
+const serviceByBgAnchor = new Map<string, ServicePage>(
+  bgServices.map((s) => [s.anchor, s]),
 )
 const projectSlugs = new Set<string>(getProjects('bg').map((p) => p.slug))
 
@@ -42,13 +49,34 @@ function stripEn(pathname: string): string {
   return pathname
 }
 
+function splitHash(value: string): { path: string; hash: string } {
+  const at = value.indexOf('#')
+  if (at === -1) return { path: value, hash: '' }
+  return { path: value.slice(0, at), hash: value.slice(at + 1) }
+}
+
 /** Maps a BG-style path to the equivalent path for the given locale. */
 export function toLocalizedPath(locale: Locale, bgPath: string): string {
+  const { path, hash } = splitHash(bgPath)
+
+  // Legacy BG service slug (e.g. /izrabotka-na-sait) → services index anchor.
+  if (path !== '/uslugi') {
+    const legacy = serviceBySlug.get(path.slice(1))
+    if (legacy) {
+      return locale === 'en'
+        ? `/en/services#${legacy.enSlug}`
+        : `/uslugi#${legacy.anchor}`
+    }
+  }
+
   if (locale === 'bg') return bgPath
-  if (bgToEnStatic[bgPath] !== undefined) return bgToEnStatic[bgPath]
-  if (bgPath.startsWith('/portfolio/')) return '/en' + bgPath
-  const enSlug = serviceEnSlug.get(bgPath.slice(1))
-  if (enSlug) return `/en/services/${enSlug}`
+
+  if (path === '/uslugi') {
+    const service = serviceByBgAnchor.get(hash)
+    return service ? `/en/services#${service.enSlug}` : '/en/services'
+  }
+  if (bgToEnStatic[path] !== undefined) return bgToEnStatic[path]
+  if (path.startsWith('/portfolio/')) return '/en' + path
   // Unknown path — return unchanged so callers never generate a false route.
   return bgPath
 }
@@ -56,25 +84,30 @@ export function toLocalizedPath(locale: Locale, bgPath: string): string {
 /** Maps an EN path back to the canonical BG-style path. */
 export function toBgPath(pathname: string): string {
   if (getLocaleFromPathname(pathname) === 'bg') return pathname
-  const stripped = stripEn(pathname)
+  const { path, hash } = splitHash(pathname)
+  const stripped = stripEn(path)
+
+  if (stripped === '/services') {
+    const service = serviceByEnSlug.get(hash)
+    return service ? `/uslugi#${service.anchor}` : '/uslugi'
+  }
   if (enToBgStatic[stripped] !== undefined) return enToBgStatic[stripped]
   if (stripped.startsWith('/portfolio/')) return stripped
   if (stripped.startsWith('/services/')) {
-    const enSlug = stripped.slice('/services/'.length)
-    const bgSlug = serviceBgSlug.get(enSlug)
-    return bgSlug ? `/${bgSlug}` : `/${enSlug}`
+    const slug = stripped.slice('/services/'.length)
+    const service = serviceByEnSlug.get(slug) ?? serviceBySlug.get(slug)
+    // Unknown service slugs stay unknown so they resolve to a real 404.
+    return service ? `/uslugi#${service.anchor}` : stripped
   }
   return stripped || '/'
 }
 
 /** Whether a BG-style path maps to a real indexable page. */
 export function isKnownBgRoute(bgPath: string): boolean {
-  if (bgPath in bgToEnStatic) return true
-  if (bgPath.startsWith('/portfolio/')) {
-    return projectSlugs.has(bgPath.slice('/portfolio/'.length))
-  }
-  if (bgPath.startsWith('/')) {
-    return serviceEnSlug.has(bgPath.slice(1))
+  const { path } = splitHash(bgPath)
+  if (path in bgToEnStatic) return true
+  if (path.startsWith('/portfolio/')) {
+    return projectSlugs.has(path.slice('/portfolio/'.length))
   }
   return false
 }
@@ -96,21 +129,22 @@ export function getAlternateHref(pathname: string): string | null {
   return toLocalizedPath(other, bgPath)
 }
 
-/** Old EN service slugs → natural EN slugs (permanent redirects). */
-export const enSlugRedirects: Record<string, string> = {
-  'izrabotka-na-sait': 'website-development',
-  'izrabotka-na-online-magazin': 'online-store-development',
-  poddrazhka: 'maintenance',
-}
-
-/** Returns a 301 redirect target for an old EN service slug, if any. */
+/**
+ * Returns a 301 redirect target for a legacy service route, mapping it to the
+ * matching section anchor on the services index. Unknown paths return null.
+ */
 export function getServiceRedirect(pathname: string): string | null {
-  if (getLocaleFromPathname(pathname) !== 'en') return null
-  const stripped = stripEn(pathname)
-  if (stripped.startsWith('/services/')) {
-    const slug = stripped.slice('/services/'.length)
-    const target = enSlugRedirects[slug]
-    if (target) return `/en/services/${target}`
+  if (getLocaleFromPathname(pathname) === 'en') {
+    const stripped = stripEn(pathname)
+    if (stripped.startsWith('/services/')) {
+      const slug = stripped.slice('/services/'.length)
+      const service = serviceByEnSlug.get(slug) ?? serviceBySlug.get(slug)
+      return service ? `/en/services#${service.enSlug}` : null
+    }
+    return null
   }
-  return null
+
+  const slug = pathname.startsWith('/') ? pathname.slice(1) : pathname
+  const service = serviceBySlug.get(slug)
+  return service ? `/uslugi#${service.anchor}` : null
 }

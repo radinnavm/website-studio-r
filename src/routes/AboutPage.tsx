@@ -1,5 +1,4 @@
 import { CtaBanner } from '@/components/ui/CtaBanner'
-import { FeatureSection } from '@/components/ui/FeatureSection'
 import { PageHero } from '@/components/ui/PageHero'
 import { ProseSection } from '@/components/ui/ProseSection'
 import { about } from '@/lib/about'
@@ -26,6 +25,7 @@ export function AboutPage() {
           { label: uiT.home, href: l('/') },
           { label: t.hero.eyebrow },
         ]}
+        image="/images/za-nas.jpg"
       />
 
       {t.sections.map((section) => (
@@ -36,19 +36,14 @@ export function AboutPage() {
           eyebrow={section.eyebrow}
           title={section.title}
           paragraphs={section.paragraphs}
+          bullets={section.bullets}
         />
       ))}
 
-      <FeatureSection
-        id="principles"
-        tone="deep"
-        eyebrow={uiT.about.principles}
-        title={uiT.about.principlesTitle}
-        items={t.principles}
-      />
-
       <CtaBanner
         id="about-cta"
+        title={t.cta.title}
+        lead={t.cta.lead}
         secondaryLabel={
           locale === 'en' ? 'Explore our services' : 'Разгледайте услугите'
         }

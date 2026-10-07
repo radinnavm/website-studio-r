@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/Button'
 import { Container } from '@/components/ui/Container'
 import { contactHref, getPrimaryNav, getSite } from '@/config/site'
 import { useLocale } from '@/lib/LocaleProvider'
-import { getServices } from '@/lib/services'
+import { getServiceHref, getServices } from '@/lib/services'
 import { ui } from '@/lib/ui'
 
 import styles from './Footer.module.css'
@@ -41,7 +41,10 @@ export function Footer() {
             <ul className={styles.list}>
               {services.map((service) => (
                 <li key={service.id}>
-                  <Link className={styles.link} to={l(`/${service.slug}`)}>
+                  <Link
+                    className={styles.link}
+                    to={getServiceHref(locale, service)}
+                  >
                     {service.title}
                   </Link>
                 </li>

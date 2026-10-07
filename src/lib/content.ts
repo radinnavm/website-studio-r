@@ -24,6 +24,7 @@ export type HeroContent = {
   meta: string[]
   primary: string
   secondary: string
+  imageAlt: string
 }
 
 export type HomeContent = {
@@ -48,6 +49,8 @@ export const homeContent: Localized<HomeContent> = {
       meta: ['Изработка на сайт', 'Онлайн магазин', 'Уеб дизайн'],
       primary: 'Започнете проект',
       secondary: 'Вижте портфолиото',
+      imageAlt:
+        'Светла и топла работна среда на уеб студио — лаптоп върху каменна маса, бордо ваза с листа и мека слънчева светлина.',
     },
     processSteps: [
       {
@@ -126,6 +129,8 @@ export const homeContent: Localized<HomeContent> = {
       ],
       primary: 'Start a project',
       secondary: 'See our work',
+      imageAlt:
+        'A warm, sunlit web studio workspace — a laptop on a stone desk beside a burgundy vase of leaves.',
     },
     processSteps: [
       {

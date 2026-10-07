@@ -9,16 +9,27 @@ body {
   font-size: var(--text-base);
   line-height: var(--leading-normal);
   font-weight: 400;
+  font-synthesis: none; /* never fake a weight we did not load */
 }
 
+/* Display serif for the large editorial headings (h1/h2). */
 h1,
-h2,
-h3,
-h4 {
+h2 {
   font-family: var(--font-display);
-  font-weight: 500;
+  font-weight: 600;
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
+  color: var(--color-ink);
+}
+
+/* Structured sans-serif for sub-headings (h3/h4) — a deliberate
+   serif/sans contrast so they never read as a larger paragraph. */
+h3,
+h4 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  line-height: var(--leading-snug);
+  letter-spacing: -0.01em;
   color: var(--color-ink);
 }
 
@@ -32,12 +43,10 @@ h2 {
 
 h3 {
   font-size: var(--text-xl);
-  line-height: var(--leading-snug);
 }
 
 h4 {
   font-size: var(--text-lg);
-  line-height: var(--leading-snug);
 }
 
 p {

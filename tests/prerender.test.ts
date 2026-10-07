@@ -63,8 +63,8 @@ function render(bgPath: string, locale: 'bg' | 'en') {
   )
 }
 
-test('prerendered EN service page has singleton metadata', () => {
-  const html = render('/izrabotka-na-sait', 'en')
+test('prerendered EN services index has singleton metadata', () => {
+  const html = render('/uslugi', 'en')
   assert.equal(count(html, /<meta name="description"/g), 1)
   assert.equal(count(html, /<meta property="og:title"/g), 1)
   assert.equal(count(html, /<meta property="og:description"/g), 1)
@@ -74,20 +74,22 @@ test('prerendered EN service page has singleton metadata', () => {
   assert.equal(count(html, /<meta name="twitter:image"/g), 1)
   assert.equal(count(html, /<link rel="canonical"/g), 1)
   assert.equal(count(html, /<link rel="alternate"/g), 3)
-  assert.match(
-    html,
-    /<meta name="description" content="Representative websites/,
-  )
+  assert.match(html, /<html lang="en"/)
+  assert.ok(html.includes('<title>Services | Website Studio R</title>'))
 })
 
-test('prerendered BG service page has singleton metadata and BG title', () => {
-  const html = render('/izrabotka-na-sait', 'bg')
+test('prerendered BG services index has singleton metadata and BG title', () => {
+  const html = render('/uslugi', 'bg')
   assert.equal(count(html, /<meta name="description"/g), 1)
   assert.equal(count(html, /<meta property="og:title"/g), 1)
   assert.equal(count(html, /<link rel="canonical"/g), 1)
   assert.equal(count(html, /<link rel="alternate"/g), 3)
   assert.match(html, /<html lang="bg"/)
-  assert.match(html, /<title>Изработка на сайт \| Website Studio R<\/title>/)
+  assert.ok(
+    html.includes(
+      '<title>Услуги за изработка на сайтове и онлайн магазини | Website Studio R</title>',
+    ),
+  )
 })
 
 test('prerendered noindex privacy page has no canonical/hreflang', () => {
@@ -124,4 +126,10 @@ test('sitemap includes all indexable BG+EN routes and excludes privacy/404', () 
   assert.ok(sitemap.includes('hreflang="bg-BG"'))
   assert.ok(sitemap.includes('hreflang="en"'))
   assert.ok(sitemap.includes('hreflang="x-default"'))
+  // Legacy service pages are no longer indexable; only the index remains.
+  assert.ok(bgRoutes.includes('/uslugi'))
+  assert.ok(!bgRoutes.includes('/izrabotka-na-sait'))
+  assert.ok(!bgRoutes.includes('/web-design'))
+  assert.ok(!sitemap.includes('/izrabotka-na-sait'))
+  assert.ok(!sitemap.includes('/en/services/'))
 })

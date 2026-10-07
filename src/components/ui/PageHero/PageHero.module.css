@@ -1,12 +1,90 @@
 .hero {
   position: relative;
+  isolation: isolate;
+  overflow: hidden;
   padding-block: clamp(3rem, 7vw, 6rem) clamp(3.5rem, 8vw, 6.5rem);
   background-color: var(--color-bg-deep);
   border-bottom: 1px solid var(--color-line-soft);
 }
 
+.image {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 40% 45%;
+}
+
+/* Editorial wash over the cover image so the copy stays readable — ivory
+   toward the text side, thinning over the subject. */
+.hero[data-image='true']::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(247, 244, 238, 0.9) 0%,
+      rgba(247, 244, 238, 0.8) 44%,
+      rgba(247, 244, 238, 0.64) 100%
+    ),
+    linear-gradient(
+      to right,
+      rgba(247, 244, 238, 0.4),
+      rgba(247, 244, 238, 0.08)
+    );
+}
+
+.layout {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: var(--space-8);
+}
+
 .inner {
   max-width: 62rem;
+}
+
+.aside {
+  min-width: 0;
+}
+
+@media (min-width: 900px) {
+  .image {
+    object-position: 58% 50%;
+  }
+
+  .hero[data-image='true']::before {
+    background:
+      linear-gradient(
+        to right,
+        rgba(247, 244, 238, 0.96) 0%,
+        rgba(247, 244, 238, 0.86) 30%,
+        rgba(247, 244, 238, 0.66) 56%,
+        rgba(247, 244, 238, 0.5) 80%,
+        rgba(247, 244, 238, 0.42) 100%
+      ),
+      linear-gradient(
+        to bottom,
+        rgba(33, 29, 26, 0) 60%,
+        rgba(33, 29, 26, 0.1) 100%
+      );
+  }
+
+  .layout[data-has-aside='true'] {
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 24rem);
+    gap: clamp(3rem, 6vw, 6rem);
+    align-items: start;
+  }
+
+  .layout[data-has-aside='true'] .inner {
+    max-width: 42rem;
+  }
 }
 
 .breadcrumbs {

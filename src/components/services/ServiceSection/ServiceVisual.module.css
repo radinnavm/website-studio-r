@@ -1,0 +1,616 @@
+/* ==========================================================================
+   Service mockups — decorative, in-palette website / UI visuals.
+   Rendered entirely with CSS + SVG; no raster assets, no stock imagery.
+   ========================================================================== */
+
+.visual {
+  margin: 0;
+  padding: clamp(0.75rem, 2.4vw, 1.75rem);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-deep);
+}
+
+.frame {
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-xs);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---- Shared browser chrome -------------------------------------------- */
+.chrome {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--color-line-soft);
+  background-color: var(--color-bg-warm);
+}
+
+.chrome::before {
+  content: '';
+  width: 0.45rem;
+  height: 0.45rem;
+  background-color: var(--color-burgundy);
+}
+
+.url {
+  width: 38%;
+  height: 0.4rem;
+  border-radius: var(--radius-xs);
+  background-color: var(--color-line-soft);
+}
+
+/* ---- Shared page shell ------------------------------------------------- */
+.page {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: clamp(0.7rem, 3%, 1.4rem);
+  padding: clamp(0.9rem, 4%, 1.75rem);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand {
+  flex: 0 0 auto;
+  width: 1.1rem;
+  height: 1.1rem;
+  background-color: var(--color-ink);
+}
+
+.nav {
+  display: flex;
+  flex: 1;
+  gap: 0.5rem;
+}
+
+.nav i {
+  width: 1.6rem;
+  height: 0.35rem;
+  background-color: var(--color-line);
+}
+
+.topAction {
+  flex: 0 0 auto;
+  width: 2.4rem;
+  height: 0.9rem;
+  background-color: var(--color-burgundy);
+}
+
+.headingXl,
+.headingLg,
+.headingSm {
+  display: block;
+  background-color: var(--color-ink);
+}
+
+.headingXl {
+  width: 92%;
+  height: 1.05rem;
+}
+
+.headingLg {
+  width: 68%;
+  height: 1.05rem;
+}
+
+.headingSm {
+  width: 80%;
+  height: 0.85rem;
+}
+
+.copyLine,
+.copyLineShort {
+  display: block;
+  height: 0.35rem;
+  background-color: var(--color-line);
+}
+
+.copyLine {
+  width: 100%;
+}
+
+.copyLineShort {
+  width: 72%;
+}
+
+.action {
+  display: block;
+  width: 4.2rem;
+  height: 1.15rem;
+  background-color: var(--color-burgundy);
+}
+
+/* ---- Website mockup ---------------------------------------------------- */
+.hero {
+  display: grid;
+  flex: 1;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  gap: clamp(0.9rem, 4%, 1.5rem);
+}
+
+.heroCopy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.heroCopy .action {
+  margin-top: 0.5rem;
+}
+
+.heroMedia {
+  position: relative;
+  min-height: 4rem;
+  border: 1px solid var(--color-line-soft);
+  background-color: var(--color-bg-deep);
+}
+
+.mediaCaption {
+  position: absolute;
+  bottom: 0.6rem;
+  left: 0.6rem;
+  width: 45%;
+  height: 0.35rem;
+  background-color: var(--color-taupe);
+}
+
+/* ---- E-commerce mockup ------------------------------------------------- */
+.search {
+  flex: 1;
+  height: 0.9rem;
+  border: 1px solid var(--color-line-soft);
+  background-color: var(--color-bg-warm);
+}
+
+.cart {
+  flex: 0 0 auto;
+  width: 1.4rem;
+  height: 0.9rem;
+  border: 1px solid var(--color-line);
+  background-color: var(--color-bg-deep);
+}
+
+.product {
+  display: grid;
+  flex: 1;
+  grid-template-columns: 1.1fr 1fr;
+  gap: clamp(0.9rem, 4%, 1.5rem);
+}
+
+.productMedia {
+  border: 1px solid var(--color-line-soft);
+  background-color: var(--color-bg-deep);
+}
+
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.price {
+  display: block;
+  width: 32%;
+  height: 0.7rem;
+  background-color: var(--color-burgundy);
+}
+
+.swatches {
+  display: flex;
+  gap: 0.35rem;
+}
+
+.swatches i {
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 1px solid var(--color-line);
+}
+
+.swatches i:nth-child(1) {
+  background-color: var(--color-bg);
+}
+
+.swatches i:nth-child(2) {
+  background-color: var(--color-taupe);
+}
+
+.swatches i:nth-child(3) {
+  background-color: var(--color-ink);
+}
+
+.thumbs {
+  display: grid;
+  flex: 0 0 auto;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.thumbs span {
+  height: 1.8rem;
+  border: 1px solid var(--color-line-soft);
+  background-color: var(--color-bg-deep);
+}
+
+/* ---- Web design mockup ------------------------------------------------- */
+.board {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: clamp(0.7rem, 3.5%, 1.4rem);
+  padding: clamp(1rem, 4.5%, 2rem);
+}
+
+.boardLabel {
+  width: 30%;
+  height: 0.4rem;
+  background-color: var(--color-taupe);
+}
+
+.palette {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+
+.palette i {
+  height: 2.2rem;
+  border: 1px solid var(--color-line-soft);
+}
+
+.swatchIvory {
+  background-color: var(--color-bg);
+}
+
+.swatchTaupe {
+  background-color: var(--color-taupe);
+}
+
+.swatchEspresso {
+  background-color: var(--color-ink);
+}
+
+.swatchBurgundy {
+  background-color: var(--color-burgundy);
+}
+
+.specimen {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-block: 0.25rem;
+  border-bottom: 1px solid var(--color-line-soft);
+}
+
+.glyph {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 8vw, 3.4rem);
+  line-height: 0.9;
+  color: var(--color-ink);
+}
+
+.scale {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.3rem;
+  max-width: 45%;
+}
+
+.scale i {
+  height: 0.35rem;
+  background-color: var(--color-line);
+}
+
+.scale i:nth-child(1) {
+  width: 100%;
+}
+
+.scale i:nth-child(2) {
+  width: 78%;
+}
+
+.scale i:nth-child(3) {
+  width: 56%;
+}
+
+.scale i:nth-child(4) {
+  width: 34%;
+}
+
+.components {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pillSolid {
+  width: 4rem;
+  height: 1.15rem;
+  background-color: var(--color-burgundy);
+}
+
+.pillGhost {
+  width: 4rem;
+  height: 1.15rem;
+  border: 1px solid var(--color-ink);
+}
+
+.field {
+  flex: 1;
+  height: 1.15rem;
+  border: 1px solid var(--color-line);
+  background-color: var(--color-bg-warm);
+}
+
+.cards {
+  display: grid;
+  flex: 1;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.cards span {
+  border: 1px solid var(--color-line-soft);
+  background-color: var(--color-bg-deep);
+}
+
+/* ---- SEO mockup (dark analytics panel) --------------------------------- */
+.visual[data-variant='seo'] .frame {
+  border-color: var(--color-inverse-bg);
+  background-color: var(--color-inverse-bg);
+  box-shadow: var(--shadow-md);
+}
+
+.analytics {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: clamp(0.7rem, 3.5%, 1.4rem);
+  padding: clamp(1rem, 4.5%, 2rem);
+}
+
+.analyticsHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.analyticsTitle {
+  width: 32%;
+  height: 0.5rem;
+  background-color: var(--color-inverse-line);
+}
+
+.tabs {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.tabs i {
+  width: 1.8rem;
+  height: 0.9rem;
+  background-color: rgba(247, 244, 238, 0.08);
+}
+
+.tabs i.tabActive {
+  background-color: var(--color-burgundy);
+}
+
+.metrics {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.metric {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.metricValue {
+  width: 3.4rem;
+  height: 0.95rem;
+  background-color: var(--color-inverse-ink);
+}
+
+.metricDelta {
+  width: 2.2rem;
+  height: 0.3rem;
+  background-color: var(--color-burgundy);
+}
+
+.chart {
+  flex: 1;
+  width: 100%;
+  min-height: 3rem;
+  color: rgba(247, 244, 238, 0.12);
+}
+
+.chartGrid {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.chartArea {
+  fill: rgba(122, 38, 56, 0.3);
+}
+
+.chartLine {
+  fill: none;
+  stroke: var(--color-burgundy-muted);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.chartDot {
+  fill: var(--color-inverse-ink);
+  stroke: var(--color-burgundy);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.4rem;
+  height: 2.4rem;
+}
+
+.bars i {
+  flex: 1;
+  background-color: rgba(247, 244, 238, 0.16);
+}
+
+.bars i:nth-child(1) {
+  height: 40%;
+}
+
+.bars i:nth-child(2) {
+  height: 62%;
+}
+
+.bars i:nth-child(3) {
+  height: 48%;
+}
+
+.bars i:nth-child(4) {
+  height: 78%;
+}
+
+.bars i:nth-child(5) {
+  height: 58%;
+}
+
+.bars i:nth-child(6) {
+  height: 92%;
+  background-color: var(--color-burgundy);
+}
+
+/* ---- Support mockup ---------------------------------------------------- */
+.dashboard {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: clamp(0.7rem, 3.5%, 1.4rem);
+  padding: clamp(1rem, 4.5%, 2rem);
+}
+
+.dashHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.dashTitle {
+  width: 34%;
+  height: 0.5rem;
+  background-color: var(--color-ink);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  width: 2.6rem;
+  height: 1rem;
+  padding: 0 0.4rem;
+  border: 1px solid var(--color-burgundy-line);
+  background-color: var(--color-burgundy-soft);
+}
+
+.status i {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background-color: var(--color-burgundy);
+}
+
+.dashCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.dashCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 0.7rem;
+  border: 1px solid var(--color-line-soft);
+  background-color: var(--color-bg-warm);
+}
+
+.dashValue {
+  width: 60%;
+  height: 0.75rem;
+  background-color: var(--color-ink);
+}
+
+.dashLabel {
+  width: 85%;
+  height: 0.3rem;
+  background-color: var(--color-line);
+}
+
+.sparkline {
+  flex: 1;
+  width: 100%;
+  min-height: 2.5rem;
+}
+
+.sparkLine {
+  fill: none;
+  stroke: var(--color-burgundy);
+  stroke-width: 2;
+  vector-effect: non-scaling-stroke;
+}
+
+.log {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.log li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid var(--color-line-soft);
+}
+
+.log i {
+  width: 0.4rem;
+  height: 0.4rem;
+  border-radius: 50%;
+  background-color: var(--color-taupe);
+}
+
+.log span {
+  flex: 1;
+  height: 0.3rem;
+  background-color: var(--color-line);
+}

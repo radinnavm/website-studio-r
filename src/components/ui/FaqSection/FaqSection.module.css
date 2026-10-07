@@ -27,6 +27,7 @@
 .question {
   font-family: var(--font-display);
   font-size: var(--text-lg);
+  font-weight: 600;
   line-height: var(--leading-snug);
   color: var(--color-ink);
 }

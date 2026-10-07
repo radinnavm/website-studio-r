@@ -70,6 +70,7 @@ export function PortfolioPage() {
           { label: uiT.home, href: l('/') },
           { label: t.hero.eyebrow },
         ]}
+        image="/images/full-hero.jpg"
       />
 
       {featuredProject && (

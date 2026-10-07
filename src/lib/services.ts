@@ -42,6 +42,11 @@ export type ServiceSlug = (typeof serviceSlugs)[number]
 export type ServicePage = {
   slug: ServiceSlug
   enSlug: string
+  /**
+   * Anchor id used when the service is presented as a section on `/uslugi`.
+   * The EN anchor is always `enSlug`.
+   */
+  anchor: string
   id: string
   index: string
   title: string
@@ -65,6 +70,7 @@ const bgServices: ServicePage[] = [
   {
     slug: 'izrabotka-na-sait',
     enSlug: 'website-development',
+    anchor: 'izrabotka-na-sait',
     id: 'website',
     related: ['izrabotka-na-online-magazin', 'web-design', 'seo', 'poddrazhka'],
     index: '01',
@@ -78,9 +84,9 @@ const bgServices: ServicePage[] = [
     ],
     hero: {
       eyebrow: 'Изработка на сайт',
-      title: 'Изработка на сайт за вашия бизнес',
-      accent: 'с ясна структура и силен дизайн.',
-      lead: 'Изработваме фирмени сайтове и бизнес сайтове с индивидуален дизайн, адаптивна разработка и техническа основа — от структурата до стартирането.',
+      title: 'Изработка на сайт',
+      accent: 'за бизнес с характер.',
+      lead: 'Създаваме модерни и професионални сайтове, изградени според целите и идентичността на вашия бизнес. Фокусът е върху ясната структура, доброто потребителско изживяване и безупречното представяне на всяко устройство.',
     },
     meta: {
       title: 'Изработка на сайт | Website Studio R',
@@ -196,6 +202,7 @@ const bgServices: ServicePage[] = [
   {
     slug: 'izrabotka-na-online-magazin',
     enSlug: 'online-store-development',
+    anchor: 'online-magazin',
     id: 'ecommerce',
     related: ['web-design', 'seo', 'poddrazhka'],
     index: '02',
@@ -205,9 +212,9 @@ const bgServices: ServicePage[] = [
     points: ['Каталог и продукти', 'Checkout поток', 'Интеграции и плащания'],
     hero: {
       eyebrow: 'Онлайн магазин',
-      title: 'Изработка на онлайн магазин, който улеснява',
-      accent: 'покупката.',
-      lead: 'Изграждаме онлайн магазини с ясна структура на каталога, плавен checkout и адаптивен дизайн — от първия продукт до плащането.',
+      title: 'Онлайн магазин',
+      accent: 'създаден за лесна покупка.',
+      lead: 'Изграждаме онлайн магазини с удобна навигация, ясна продуктова структура и плавен процес на покупка. Решението е съобразено с начина, по който продавате, и може да се развива заедно с бизнеса ви.',
     },
     meta: {
       title: 'Изработка на онлайн магазин | Website Studio R',
@@ -332,6 +339,7 @@ const bgServices: ServicePage[] = [
   {
     slug: 'web-design',
     enSlug: 'web-design',
+    anchor: 'web-design',
     id: 'web-design',
     related: ['izrabotka-na-sait', 'izrabotka-na-online-magazin'],
     index: '03',
@@ -341,9 +349,9 @@ const bgServices: ServicePage[] = [
     points: ['Визуална посока', 'UI система', 'Типография и бранд'],
     hero: {
       eyebrow: 'Уеб дизайн',
-      title: 'Уеб дизайн, който изглежда премиум',
-      accent: 'и работи за бранда.',
-      lead: 'Създаваме дизайн на сайт с ясна йерархия, внимателна типография и последователна UI система — модерен уеб дизайн, който не изглежда като шаблон.',
+      title: 'Web Design',
+      accent: 'с ясна визуална идентичност.',
+      lead: 'Създаваме визуална концепция, която прави сайта разпознаваем, модерен и лесен за използване. Работим с типография, цветове, композиция и UX, за да постигнем дизайн с характер и ясна логика.',
     },
     meta: {
       title: 'Уеб дизайн | Website Studio R',
@@ -452,6 +460,7 @@ const bgServices: ServicePage[] = [
   {
     slug: 'seo',
     enSlug: 'seo',
+    anchor: 'seo',
     id: 'seo',
     related: ['izrabotka-na-sait', 'izrabotka-na-online-magazin', 'poddrazhka'],
     index: '04',
@@ -465,9 +474,9 @@ const bgServices: ServicePage[] = [
     ],
     hero: {
       eyebrow: 'SEO',
-      title: 'SEO оптимизация, която помага на сайта',
-      accent: 'да бъде откриван.',
-      lead: 'Работим върху техническа SEO оптимизация и on-page структура, така че сайтът да е разбираем за Google и да се зарежда бързо.',
+      title: 'SEO',
+      accent: 'за по-добра видимост онлайн.',
+      lead: 'Оптимизираме структурата, съдържанието и техническата основа на сайта, за да бъде по-лесно разбираем от Google и по-откриваем от потенциални клиенти. Подходът е дългосрочен и е насочен към реална органична видимост, без обещания за „гарантирани позиции“.',
     },
     meta: {
       title: 'SEO оптимизация | Website Studio R',
@@ -570,6 +579,7 @@ const bgServices: ServicePage[] = [
   {
     slug: 'poddrazhka',
     enSlug: 'maintenance',
+    anchor: 'poddrazhka',
     id: 'support',
     related: ['izrabotka-na-sait', 'izrabotka-na-online-magazin'],
     index: '05',
@@ -579,9 +589,9 @@ const bgServices: ServicePage[] = [
     points: ['Мониторинг', 'Обновления', 'Нови функционалности'],
     hero: {
       eyebrow: 'Поддръжка',
-      title: 'Поддръжка на сайт, който остава',
-      accent: 'в добро състояние.',
-      lead: 'Поемаме техническата поддръжка на сайта — обновления, сигурност, наблюдение и нови функционалности, така че да работите спокойно.',
+      title: 'Поддръжка',
+      accent: 'за сайт, който остава в добра форма.',
+      lead: 'Грижим се сайтът да остане актуален, сигурен и технически стабилен след стартирането му. Можем да поемем промени по съдържанието, технически корекции, подобрения и развитие на нови функционалности.',
     },
     meta: {
       title: 'Поддръжка на сайт | Website Studio R',
@@ -679,7 +689,7 @@ const bgServices: ServicePage[] = [
 
 type ServiceOverride = Omit<
   ServicePage,
-  'slug' | 'enSlug' | 'id' | 'index' | 'related'
+  'slug' | 'enSlug' | 'anchor' | 'id' | 'index' | 'related'
 >
 
 const enOverrides: Record<ServiceSlug, ServiceOverride> = {
@@ -690,9 +700,9 @@ const enOverrides: Record<ServiceSlug, ServiceOverride> = {
     points: ['Strategy & structure', 'Custom design', 'Responsive build'],
     hero: {
       eyebrow: 'Website development',
-      title: 'A website that presents your business',
-      accent: 'the way it deserves.',
-      lead: 'We design and build representative websites with a clear structure, a strong visual language and a technical foundation you can build on.',
+      title: 'Website development',
+      accent: 'for a business with character.',
+      lead: 'We create modern, professional websites built around the goals and identity of your business. The focus is on a clear structure, a good user experience and flawless performance on every device.',
     },
     meta: {
       title: 'Website development | Website Studio R',
@@ -809,9 +819,9 @@ const enOverrides: Record<ServiceSlug, ServiceOverride> = {
     ],
     hero: {
       eyebrow: 'Online store',
-      title: 'An online store that makes buying',
-      accent: 'effortless.',
-      lead: 'We build online stores where finding a product, adding it to the cart and paying are as clear as possible.',
+      title: 'Online store',
+      accent: 'built for easy shopping.',
+      lead: 'We build online stores with convenient navigation, a clear product structure and a smooth purchase process. The solution is tailored to the way you sell and can grow together with your business.',
     },
     meta: {
       title: 'Online store development | Website Studio R',
@@ -920,8 +930,9 @@ const enOverrides: Record<ServiceSlug, ServiceOverride> = {
     points: ['Visual direction', 'UI system', 'Typography & brand'],
     hero: {
       eyebrow: 'Web design',
-      title: 'A visual language that sets your brand apart.',
-      lead: 'We create design that does not look like a template — with clear hierarchy, careful typography and a consistent system.',
+      title: 'Web design',
+      accent: 'with a clear visual identity.',
+      lead: 'We create a visual concept that makes the website recognisable, modern and easy to use. We work with typography, colour, composition and UX to achieve a design with character and clear logic.',
     },
     meta: {
       title: 'Web design | Website Studio R',
@@ -1025,9 +1036,9 @@ const enOverrides: Record<ServiceSlug, ServiceOverride> = {
     points: ['Technical SEO', 'Semantic structure', 'Speed & Core Web Vitals'],
     hero: {
       eyebrow: 'SEO',
-      title: 'A technical foundation that',
-      accent: 'search engines can work with.',
-      lead: 'We organise the structure, content and technical side of your site so search engines understand what you offer.',
+      title: 'SEO',
+      accent: 'for better online visibility.',
+      lead: 'We optimise the structure, content and technical foundation of the site so it is easier for Google to understand and easier for potential customers to find. The approach is long-term and focused on real organic visibility, without promises of guaranteed positions.',
     },
     meta: {
       title: 'SEO services | Website Studio R',
@@ -1134,9 +1145,9 @@ const enOverrides: Record<ServiceSlug, ServiceOverride> = {
     points: ['Monitoring', 'Updates', 'New features'],
     hero: {
       eyebrow: 'Maintenance',
-      title: 'A website that stays',
-      accent: 'in good shape.',
-      lead: 'After launch a website needs care. We cover updates, security and growth so you can focus on your business.',
+      title: 'Maintenance',
+      accent: 'for a website that stays in good shape.',
+      lead: 'We take care that the website stays current, secure and technically stable after launch. We can handle content changes, technical fixes, improvements and the development of new features.',
     },
     meta: {
       title: 'Website maintenance | Website Studio R',
@@ -1250,6 +1261,23 @@ export function getServiceBySlug(
   slug: string,
 ): ServicePage | undefined {
   return services[locale].find((service) => service.slug === slug)
+}
+
+/** The in-page anchor id for a service section on the services index page. */
+export function getServiceAnchor(
+  locale: Locale,
+  service: Pick<ServicePage, 'anchor' | 'enSlug'>,
+): string {
+  return locale === 'en' ? service.enSlug : service.anchor
+}
+
+/** Localized link to a service section on the services index page. */
+export function getServiceHref(
+  locale: Locale,
+  service: Pick<ServicePage, 'anchor' | 'enSlug'>,
+): string {
+  const path = locale === 'en' ? '/en/services' : '/uslugi'
+  return `${path}#${getServiceAnchor(locale, service)}`
 }
 
 function assertRelatedServices(): void {

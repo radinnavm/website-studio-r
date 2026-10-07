@@ -1,0 +1,167 @@
+.service {
+  /* Offset for the sticky header when jumping to a service anchor. */
+  scroll-margin-top: 5rem;
+}
+
+.intro {
+  border-top: 1px solid var(--color-line);
+}
+
+/* Subtle arrival cue when the URL targets this service (e.g. /uslugi#seo). */
+@media (prefers-reduced-motion: no-preference) {
+  .service:target .intro {
+    animation: serviceTarget var(--duration-slow) var(--ease-out);
+  }
+}
+
+@keyframes serviceTarget {
+  from {
+    box-shadow: inset 3px 0 0 0 var(--color-burgundy);
+  }
+  to {
+    box-shadow: inset 3px 0 0 0 transparent;
+  }
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.inner {
+  display: grid;
+  align-content: start;
+  gap: var(--space-5);
+}
+
+.figure {
+  width: 100%;
+}
+
+/* Photographic service visual — framed in the same editorial mat as the
+   decorative mockups, so the two treatments read as one system. */
+.photoWrap {
+  display: block;
+  padding: clamp(0.75rem, 2.4vw, 1.75rem);
+  border: 1px solid var(--color-line-soft);
+  border-radius: var(--radius-sm);
+  background-color: var(--color-bg-deep);
+}
+
+.photo {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-xs);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Editorial heading — a small burgundy index marker above a compact serif
+   title. The accent stays understated: a thin rule and a number, never a
+   second slogan line. */
+.heading {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.marker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.markerIndex {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--text-sm);
+  line-height: 1;
+  color: var(--color-burgundy);
+}
+
+.markerRule {
+  display: inline-block;
+  width: 2.25rem;
+  height: 1px;
+  background-color: var(--color-burgundy-line);
+  transition:
+    width var(--duration-base) var(--ease-out),
+    background-color var(--duration-base) var(--ease-out);
+}
+
+/* ---- Hover: the whole service responds, not just the marker ------------- */
+@media (hover: hover) {
+  .intro,
+  .title,
+  .figure {
+    transition:
+      background-color var(--duration-base) var(--ease-out),
+      color var(--duration-base) var(--ease-out),
+      transform var(--duration-slow) var(--ease-out);
+  }
+
+  .service:hover .intro {
+    background-color: var(--color-bg-deep);
+  }
+
+  .service:hover .title {
+    color: var(--color-burgundy);
+  }
+
+  .service:hover .figure {
+    transform: translateY(-0.35rem);
+  }
+
+  .service:hover .markerRule {
+    width: 3.25rem;
+    background-color: var(--color-burgundy);
+  }
+}
+
+@media (hover: hover) and (prefers-reduced-motion: reduce) {
+  .service:hover .figure {
+    transform: none;
+  }
+}
+
+/* Strong but restrained serif title — at most one or two lines. */
+.title {
+  margin: 0;
+  font-size: var(--text-xl);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+
+.lead {
+  margin: 0;
+  font-size: var(--text-md);
+  line-height: 1.6;
+  color: var(--color-ink-soft);
+  max-width: 38rem;
+  text-wrap: pretty;
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+    gap: clamp(3rem, 6vw, 6rem);
+  }
+
+  .grid[data-flip='true'] .inner {
+    order: 2;
+  }
+
+  .grid[data-flip='true'] .figure {
+    order: 1;
+  }
+
+  .inner {
+    gap: var(--space-6);
+  }
+}

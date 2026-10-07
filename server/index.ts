@@ -53,6 +53,17 @@ function sendText(res: ServerResponse, status: number, text: string): void {
   res.end(text)
 }
 
+/**
+ * Appends a query string before any URL fragment so redirect targets like
+ * `/uslugi#seo` keep the fragment intact (a fragment must be last).
+ */
+function withSearch(target: string, search: string): string {
+  if (!search) return target
+  const hashAt = target.indexOf('#')
+  if (hashAt === -1) return `${target}${search}`
+  return `${target.slice(0, hashAt)}${search}${target.slice(hashAt)}`
+}
+
 async function sendIndexHtml(res: ServerResponse): Promise<void> {
   try {
     const html = await readFile(join(distDir, 'index.html'))
@@ -177,7 +188,7 @@ async function handleRequest(
     const normalized = pathname.replace(/\/+$/, '')
     const target = getServiceRedirect(normalized) ?? normalized
     res.statusCode = 301
-    res.setHeader('Location', `${target}${search}`)
+    res.setHeader('Location', withSearch(target, search))
     res.end()
     return
   }
@@ -185,7 +196,7 @@ async function handleRequest(
   const redirect = getServiceRedirect(pathname)
   if (redirect) {
     res.statusCode = 301
-    res.setHeader('Location', redirect)
+    res.setHeader('Location', withSearch(redirect, search))
     res.end()
     return
   }
