@@ -12,7 +12,7 @@
 }
 
 .rule {
-  display: inline-block;
+  display: var(--eyebrow-rule-display, inline-block);
   width: 2rem;
   height: 1px;
   background-color: var(--color-burgundy-line);

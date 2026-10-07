@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 
 import { Container } from '@/components/ui/Container'
+import { Eyebrow } from '@/components/ui/Eyebrow'
 import { Section } from '@/components/ui/Section'
-import { SectionHeader } from '@/components/ui/SectionHeader'
 import type { Localized } from '@/lib/i18n'
 import { useLocale } from '@/lib/LocaleProvider'
 import { getServiceHref, getServices } from '@/lib/services'
@@ -10,18 +10,12 @@ import { revealClass, useReveal } from '@/lib/useReveal'
 
 import styles from './Services.module.css'
 
-const copy: Localized<{ eyebrow: string; title: string; intro: string }> = {
+const copy: Localized<{ eyebrow: string }> = {
   bg: {
     eyebrow: 'Услуги',
-    title: 'Всичко необходимо за един силен онлайн проект.',
-    intro:
-      'От първата концепция до дългосрочната поддръжка — покриваме целия процес, така че да работите с един партньор.',
   },
   en: {
     eyebrow: 'Services',
-    title: 'Everything you need for a strong online project.',
-    intro:
-      'From the first concept to long-term maintenance, we cover the whole process so you work with one partner.',
   },
 }
 
@@ -34,12 +28,11 @@ export function Services() {
   return (
     <Section id="services" aria-labelledby="services-heading">
       <Container>
-        <SectionHeader
-          id="services-heading"
-          eyebrow={t.eyebrow}
-          title={t.title}
-          lead={t.intro}
-        />
+        <header className={styles.header}>
+          <Eyebrow id="services-heading" className={styles.eyebrow}>
+            {t.eyebrow}
+          </Eyebrow>
+        </header>
 
         <ul ref={ref} className={revealClass(styles.list, visible)}>
           {services.map((service) => (

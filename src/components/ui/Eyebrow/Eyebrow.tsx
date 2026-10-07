@@ -10,6 +10,8 @@ type EyebrowProps = {
   withRule?: boolean
   /** Element to render — use "span" inside links to keep valid HTML. */
   as?: 'p' | 'span'
+  /** Optional id, e.g. so a section can reference the label via aria-labelledby. */
+  id?: string
   className?: string
 }
 
@@ -18,13 +20,14 @@ export function Eyebrow({
   index,
   withRule = true,
   as = 'p',
+  id,
   className,
 }: EyebrowProps) {
   const classes = [styles.eyebrow, className].filter(Boolean).join(' ')
   const Tag = as
 
   return (
-    <Tag className={classes}>
+    <Tag id={id} className={classes}>
       {index ? (
         <>
           <span className={styles.index}>{index}</span>

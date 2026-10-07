@@ -78,11 +78,41 @@ export function renderHeadTags(head: HeadValues): string {
   return parts.join('')
 }
 
+type PrerenderHeadOptions = {
+  /**
+   * Above-the-fold images to preload for this route. Any image preload hints
+   * present in the shell are stripped first, so preloads stay route-scoped.
+   */
+  preloadImages?: string[]
+}
+
+/**
+ * Above-the-fold hero image per canonical BG route. Keeping this in one place
+ * lets the build-time prerender and the dev server preload the same image,
+ * so the hero never pops in after the page has already painted.
+ */
+export const routePreloadImages: Record<string, string[]> = {
+  '/': ['/images/full-hero.jpg'],
+  '/uslugi': ['/images/uslugi.jpg'],
+  '/portfolio': ['/images/full-hero.jpg'],
+  '/za-nas': ['/images/za-nas.jpg'],
+  '/kontakt': ['/images/kontakti.jpg'],
+}
+
+/** Hero images to preload for a canonical BG route (empty when none). */
+export function getRoutePreloadImages(bgPath: string): string[] {
+  return routePreloadImages[bgPath] ?? []
+}
+
 /**
  * Injects the computed head metadata into the built SPA shell, removing any
  * existing managed tags first. Stripping is whitespace/newline tolerant.
  */
-export function prerenderHead(shell: string, head: HeadValues): string {
+export function prerenderHead(
+  shell: string,
+  head: HeadValues,
+  { preloadImages = [] }: PrerenderHeadOptions = {},
+): string {
   let html = shell
   html = html.replace(/<html lang="[^"]*"/, `<html lang="${head.lang}"`)
   html = html.replace(
@@ -99,10 +129,12 @@ export function prerenderHead(shell: string, head: HeadValues): string {
     return tag
   })
 
-  // Remove canonical + hreflang alternates.
+  // Remove canonical + hreflang alternates, and any route-scoped preloads.
   html = html.replace(/<link\b[\s\S]*?>/g, (tag) => {
     if (/rel=["']canonical["']/.test(tag)) return ''
     if (/rel=["']alternate["']/.test(tag)) return ''
+    if (/rel=["']preload["']/.test(tag) && /as=["']image["']/.test(tag))
+      return ''
     return tag
   })
 
@@ -112,7 +144,14 @@ export function prerenderHead(shell: string, head: HeadValues): string {
     '',
   )
 
-  return html.replace('</head>', renderHeadTags(head) + '</head>')
+  const preload = preloadImages
+    .map(
+      (href) =>
+        `<link rel="preload" as="image" href="${escapeHtml(href)}" fetchpriority="high">`,
+    )
+    .join('')
+
+  return html.replace('</head>', preload + renderHeadTags(head) + '</head>')
 }
 
 export function renderSitemap(bgIndexable: string[]): string {
@@ -171,7 +210,9 @@ export function prerenderPlugin(): Plugin {
           route.locale,
           getPageSeo(route.bgPath, route.locale),
         )
-        const html = prerenderHead(shell, head)
+        const html = prerenderHead(shell, head, {
+          preloadImages: getRoutePreloadImages(route.bgPath),
+        })
         const out =
           route.path === '/'
             ? join(distDir, 'index.html')
