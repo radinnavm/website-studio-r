@@ -57,6 +57,19 @@ export function PortfolioPage() {
   const { ref: collectionRef, visible: collectionVisible } =
     useReveal<HTMLUListElement>()
 
+  const featuredMedia = featuredProject?.image ? (
+    <img
+      className={styles.image}
+      src={featuredProject.image}
+      alt={featuredProject.imageAlt}
+      loading="lazy"
+      width={1280}
+      height={900}
+    />
+  ) : (
+    <span className={styles.placeholder}>{uiT.portfolio.preview}</span>
+  )
+
   useSeo(getPageSeo('/portfolio', locale))
 
   return (
@@ -86,26 +99,25 @@ export function PortfolioPage() {
               ref={featuredRef}
               className={revealClass(styles.featured, featuredVisible)}
             >
-              <Link
-                className={styles.media}
-                to={l(`/portfolio/${featuredProject.slug}`)}
-                aria-label={featuredProject.name}
-              >
-                {featuredProject.image ? (
-                  <img
-                    className={styles.image}
-                    src={featuredProject.image}
-                    alt={featuredProject.imageAlt}
-                    loading="lazy"
-                    width={1280}
-                    height={900}
-                  />
-                ) : (
-                  <span className={styles.placeholder}>
-                    {uiT.portfolio.preview}
-                  </span>
-                )}
-              </Link>
+              {featuredProject.liveUrl ? (
+                <a
+                  className={styles.media}
+                  href={featuredProject.liveUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${featuredProject.name} — ${uiT.work.liveSite} (${uiT.work.liveSiteHint})`}
+                >
+                  {featuredMedia}
+                </a>
+              ) : (
+                <Link
+                  className={styles.media}
+                  to={l(`/portfolio/${featuredProject.slug}`)}
+                  aria-label={featuredProject.name}
+                >
+                  {featuredMedia}
+                </Link>
+              )}
 
               <div className={styles.info}>
                 <p className={styles.meta}>

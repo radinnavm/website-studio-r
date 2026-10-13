@@ -67,7 +67,12 @@ export type UiStrings = {
     process: string
     processTitle: string
   }
-  work: { eyebrow: string; viewProject: string }
+  work: {
+    eyebrow: string
+    viewProject: string
+    liveSite: string
+    liveSiteHint: string
+  }
   portfolio: { preview: string }
   notFound: { title: string; text: string; backHome: string }
   about: { principles: string; principlesTitle: string }
@@ -148,7 +153,12 @@ export const ui: Localized<UiStrings> = {
       process: 'Процес',
       processTitle: 'Как работим',
     },
-    work: { eyebrow: 'Избрани проекти', viewProject: 'Вижте проекта' },
+    work: {
+      eyebrow: 'Избрани проекти',
+      viewProject: 'Вижте проекта',
+      liveSite: 'Вижте проекта на живо',
+      liveSiteHint: 'отваря се в нов таб',
+    },
     portfolio: { preview: 'Визуализация на проекта' },
     notFound: {
       title: 'Тази страница не е намерена.',
@@ -231,7 +241,12 @@ export const ui: Localized<UiStrings> = {
       process: 'Process',
       processTitle: 'How we work',
     },
-    work: { eyebrow: 'Selected work', viewProject: 'View project' },
+    work: {
+      eyebrow: 'Selected work',
+      viewProject: 'View project',
+      liveSite: 'Visit live site',
+      liveSiteHint: 'opens in a new tab',
+    },
     portfolio: { preview: 'Project preview' },
     notFound: {
       title: 'This page could not be found.',

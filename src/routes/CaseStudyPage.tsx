@@ -96,9 +96,26 @@ function CaseStudyView({
         ]}
         meta={[project.label, project.category, project.year]}
         actions={
-          <Button href={l('/kontakt')} variant="primary" size="lg" withArrow>
-            {t.discuss}
-          </Button>
+          <>
+            <Button href={l('/kontakt')} variant="primary" size="lg" withArrow>
+              {t.discuss}
+            </Button>
+            {project.liveUrl && (
+              <Button
+                href={project.liveUrl}
+                variant="secondary"
+                size="lg"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {uiT.work.liveSite}
+                <span className="visually-hidden">
+                  {' '}
+                  ({uiT.work.liveSiteHint})
+                </span>
+              </Button>
+            )}
+          </>
         }
       />
 

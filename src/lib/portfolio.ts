@@ -39,6 +39,11 @@ export type Project = {
   tags: string[]
   image: string | null
   imageAlt: string
+  /**
+   * Absolute URL of the deployed, live project. Language-neutral, so it is set
+   * once on the BG project. When omitted, no "visit live site" link is shown.
+   */
+  liveUrl?: string
   featured: boolean
   caseStudy?: CaseStudy
 }
@@ -72,6 +77,7 @@ const bgProjects: Project[] = [
     image: '/work/maison-elise.svg',
     imageAlt:
       'Начална страница на онлайн магазин Maison Élise с изчистен продуктов layout',
+    liveUrl: 'https://maison-elise.onrender.com',
     featured: true,
     caseStudy: {
       overview: [
@@ -140,7 +146,7 @@ const bgProjects: Project[] = [
 
 type ProjectOverride = Omit<
   Project,
-  'id' | 'slug' | 'name' | 'technologies' | 'image' | 'featured'
+  'id' | 'slug' | 'name' | 'technologies' | 'image' | 'liveUrl' | 'featured'
 >
 
 const enOverrides: Record<ProjectSlug, ProjectOverride> = {

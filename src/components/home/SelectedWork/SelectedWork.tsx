@@ -36,25 +36,38 @@ export function SelectedWork() {
         <div ref={ref} className={revealClass(styles.cases, visible)}>
           {projects.map((project) => {
             const href = l(`/portfolio/${project.slug}`)
+            const media = project.image && (
+              <img
+                className={styles.image}
+                src={project.image}
+                alt={project.imageAlt}
+                loading="lazy"
+                width={1280}
+                height={900}
+              />
+            )
 
             return (
               <article key={project.id} className={styles.case}>
-                <Link
-                  className={styles.media}
-                  to={href}
-                  aria-label={`${project.name}`}
-                >
-                  {project.image && (
-                    <img
-                      className={styles.image}
-                      src={project.image}
-                      alt={project.imageAlt}
-                      loading="lazy"
-                      width={1280}
-                      height={900}
-                    />
-                  )}
-                </Link>
+                {project.liveUrl ? (
+                  <a
+                    className={styles.media}
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${project.name} — ${t.liveSite} (${t.liveSiteHint})`}
+                  >
+                    {media}
+                  </a>
+                ) : (
+                  <Link
+                    className={styles.media}
+                    to={href}
+                    aria-label={project.name}
+                  >
+                    {media}
+                  </Link>
+                )}
 
                 <div className={styles.info}>
                   <p className={styles.meta}>
