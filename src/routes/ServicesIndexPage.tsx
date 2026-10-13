@@ -60,7 +60,7 @@ export function ServicesIndexPage() {
           { label: t.home, href: l('/') },
           { label: t.hero.eyebrow },
         ]}
-        image="/images/uslugi.jpg"
+        image="/images/hero-pink.jpg"
         aside={
           <nav aria-labelledby="services-toc-heading">
             <h2 id="services-toc-heading" className="visually-hidden">

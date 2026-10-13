@@ -8,6 +8,7 @@ export type UiStrings = {
   skipLink: string
   home: string
   services: string
+  pricingLabel: string
   portfolioLabel: string
   aboutLabel: string
   contactLabel: string
@@ -78,6 +79,7 @@ export const ui: Localized<UiStrings> = {
     skipLink: 'Към съдържанието',
     home: 'Начало',
     services: 'Услуги',
+    pricingLabel: 'Цени',
     portfolioLabel: 'Портфолио',
     aboutLabel: 'За нас',
     contactLabel: 'Контакти',
@@ -160,6 +162,7 @@ export const ui: Localized<UiStrings> = {
     skipLink: 'Skip to content',
     home: 'Home',
     services: 'Services',
+    pricingLabel: 'Pricing',
     portfolioLabel: 'Portfolio',
     aboutLabel: 'About',
     contactLabel: 'Contact',

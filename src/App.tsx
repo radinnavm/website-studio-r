@@ -12,6 +12,7 @@ import { ContactPage } from '@/routes/ContactPage'
 import { HomePage } from '@/routes/HomePage'
 import { NotFoundPage } from '@/routes/NotFoundPage'
 import { PortfolioPage } from '@/routes/PortfolioPage'
+import { PricingPage } from '@/routes/PricingPage'
 import { PrivacyPage } from '@/routes/PrivacyPage'
 import { ServicesIndexPage } from '@/routes/ServicesIndexPage'
 
@@ -48,6 +49,7 @@ export default function App() {
           ))}
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/portfolio/:slug" element={<CaseStudyPage />} />
+          <Route path="/tseni" element={<PricingPage />} />
           <Route path="/za-nas" element={<AboutPage />} />
           <Route path="/kontakt" element={<ContactPage />} />
           <Route path="/politika-za-poveritelnost" element={<PrivacyPage />} />
@@ -64,6 +66,7 @@ export default function App() {
           ))}
           <Route path="/en/portfolio" element={<PortfolioPage />} />
           <Route path="/en/portfolio/:slug" element={<CaseStudyPage />} />
+          <Route path="/en/pricing" element={<PricingPage />} />
           <Route path="/en/about" element={<AboutPage />} />
           <Route path="/en/contact" element={<ContactPage />} />
           <Route path="/en/privacy" element={<PrivacyPage />} />

@@ -1,0 +1,140 @@
+.plans {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--color-line);
+}
+
+.plan {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding-block: clamp(2.5rem, 5vw, 3.5rem);
+}
+
+.plan + .plan {
+  border-top: 1px solid var(--color-line);
+}
+
+.planHead {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.planName {
+  margin: 0;
+  font-size: var(--text-lg);
+  letter-spacing: var(--tracking-tight);
+}
+
+.price {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  margin: 0;
+  font-family: var(--font-display);
+  line-height: 1;
+  color: var(--color-ink);
+}
+
+.priceValue {
+  font-size: clamp(3rem, 6vw, 4.25rem);
+  letter-spacing: var(--tracking-tight);
+}
+
+.priceCurrency {
+  font-size: var(--text-xl);
+  color: var(--color-taupe-deep);
+}
+
+.planDescription {
+  margin: 0;
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  color: var(--color-ink-soft);
+  max-width: var(--measure-sm);
+  text-wrap: pretty;
+}
+
+.includes {
+  display: grid;
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.include {
+  position: relative;
+  padding-left: var(--space-6);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--color-muted);
+}
+
+.include::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 0.75rem;
+  height: 1px;
+  background-color: var(--color-taupe);
+}
+
+.planAction {
+  margin-top: auto;
+  padding-top: var(--space-4);
+}
+
+.support {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.supportMark {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.supportTitle {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+.supportText {
+  margin: 0;
+  font-size: var(--text-md);
+  line-height: var(--leading-relaxed);
+  color: var(--color-muted);
+  max-width: var(--measure-md);
+  text-wrap: pretty;
+}
+
+@media (min-width: 820px) {
+  .plans {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .plan + .plan {
+    border-top: none;
+    border-left: 1px solid var(--color-line);
+    padding-left: clamp(2.5rem, 5vw, 4.5rem);
+  }
+
+  .plan:first-child {
+    padding-right: clamp(2.5rem, 5vw, 4.5rem);
+  }
+
+  .support {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: clamp(2.5rem, 6vw, 5rem);
+    align-items: start;
+  }
+
+  .supportText {
+    padding-top: var(--space-2);
+  }
+}

@@ -15,7 +15,7 @@ export function Hero() {
     <section className={styles.hero} aria-labelledby="hero-heading">
       <img
         className={styles.image}
-        src="/images/full-hero.jpg"
+        src="/images/hero-white.jpg"
         alt={hero.imageAlt}
         width={1600}
         height={900}

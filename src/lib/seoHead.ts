@@ -9,6 +9,7 @@ import { htmlLang, ogLocale } from './i18n.ts'
 import type { Locale } from './i18n.ts'
 import { about } from './about.ts'
 import { privacy } from './privacy.ts'
+import { pricing } from './pricing.ts'
 import { getProjectBySlug } from './portfolio.ts'
 import { toLocalizedPath } from './routeMap.ts'
 import { ui } from './ui.ts'
@@ -118,6 +119,10 @@ export function getPageSeo(bgPath: string, locale: Locale): PageSeo {
     const m = portfolioMeta[locale]
     return { path: '/portfolio', title: m.title, description: m.description }
   }
+  if (bgPath === '/tseni') {
+    const m = pricing[locale].meta
+    return { path: '/tseni', title: m.title, description: m.description }
+  }
   if (bgPath === '/kontakt') {
     const m = contactMeta[locale]
     return { path: '/kontakt', title: m.title, description: m.description }
@@ -203,6 +208,8 @@ function buildBreadcrumb(
     items.push({ name: labels.services })
   } else if (bgPath === '/portfolio') {
     items.push({ name: labels.portfolioLabel })
+  } else if (bgPath === '/tseni') {
+    items.push({ name: labels.pricingLabel })
   } else if (bgPath === '/za-nas') {
     items.push({ name: labels.aboutLabel })
   } else if (bgPath === '/kontakt') {

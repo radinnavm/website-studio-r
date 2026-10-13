@@ -92,11 +92,11 @@ type PrerenderHeadOptions = {
  * so the hero never pops in after the page has already painted.
  */
 export const routePreloadImages: Record<string, string[]> = {
-  '/': ['/images/full-hero.jpg'],
-  '/uslugi': ['/images/uslugi.jpg'],
+  '/': ['/images/hero-white.jpg'],
+  '/uslugi': ['/images/hero-pink.jpg'],
   '/portfolio': ['/images/full-hero.jpg'],
   '/za-nas': ['/images/za-nas.jpg'],
-  '/kontakt': ['/images/kontakti.jpg'],
+  '/kontakt': ['/images/hero-gold.jpg'],
 }
 
 /** Hero images to preload for a canonical BG route (empty when none). */
@@ -174,6 +174,7 @@ export function indexableBgRoutes(): string[] {
     '/',
     '/uslugi',
     '/portfolio',
+    '/tseni',
     '/za-nas',
     '/kontakt',
     ...getProjects('bg').map((project) => `/portfolio/${project.slug}`),

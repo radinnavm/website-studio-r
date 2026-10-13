@@ -62,12 +62,14 @@ export type NavItem = {
 export const primaryNav: Localized<NavItem[]> = {
   bg: [
     { label: 'Услуги', href: '/uslugi' },
+    { label: 'Цени', href: '/tseni' },
     { label: 'Портфолио', href: '/portfolio' },
     { label: 'За нас', href: '/za-nas' },
     { label: 'Контакти', href: '/kontakt' },
   ],
   en: [
     { label: 'Services', href: '/uslugi' },
+    { label: 'Pricing', href: '/tseni' },
     { label: 'Portfolio', href: '/portfolio' },
     { label: 'About', href: '/za-nas' },
     { label: 'Contact', href: '/kontakt' },

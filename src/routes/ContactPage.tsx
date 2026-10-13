@@ -53,7 +53,7 @@ export function ContactPage() {
           { label: uiT.home, href: l('/') },
           { label: t.hero.eyebrow },
         ]}
-        image="/images/kontakti.jpg"
+        image="/images/hero-gold.jpg"
       />
 
       <Section aria-labelledby="contact-form-heading">

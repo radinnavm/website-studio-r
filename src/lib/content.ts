@@ -50,7 +50,7 @@ export const homeContent: Localized<HomeContent> = {
       primary: 'Започнете проект',
       secondary: 'Вижте портфолиото',
       imageAlt:
-        'Светла и топла работна среда на уеб студио — лаптоп върху каменна маса, бордо ваза с листа и мека слънчева светлина.',
+        'Светъл бял мрамор с фини вени на фона — чист и неутрален.',
     },
     processSteps: [
       {
@@ -130,7 +130,7 @@ export const homeContent: Localized<HomeContent> = {
       primary: 'Start a project',
       secondary: 'See our work',
       imageAlt:
-        'A warm, sunlit web studio workspace — a laptop on a stone desk beside a burgundy vase of leaves.',
+        'A light white marble backdrop with fine veining — clean and neutral.',
     },
     processSteps: [
       {

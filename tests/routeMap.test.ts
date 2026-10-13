@@ -23,6 +23,7 @@ test('toLocalizedPath maps EN static routes', () => {
   assert.equal(toLocalizedPath('en', '/'), '/en')
   assert.equal(toLocalizedPath('en', '/uslugi'), '/en/services')
   assert.equal(toLocalizedPath('en', '/portfolio'), '/en/portfolio')
+  assert.equal(toLocalizedPath('en', '/tseni'), '/en/pricing')
   assert.equal(toLocalizedPath('en', '/za-nas'), '/en/about')
   assert.equal(toLocalizedPath('en', '/kontakt'), '/en/contact')
   assert.equal(
@@ -65,6 +66,7 @@ test('toBgPath maps EN back to BG', () => {
   assert.equal(toBgPath('/en/services'), '/uslugi')
   assert.equal(toBgPath('/en/services#seo'), '/uslugi#seo')
   assert.equal(toBgPath('/en/about'), '/za-nas')
+  assert.equal(toBgPath('/en/pricing'), '/tseni')
   assert.equal(
     toBgPath('/en/services/website-development'),
     '/uslugi#izrabotka-na-sait',
@@ -80,6 +82,8 @@ test('getAlternateHref returns equivalents for known routes', () => {
   assert.equal(getAlternateHref('/uslugi'), '/en/services')
   assert.equal(getAlternateHref('/uslugi#seo'), '/en/services#seo')
   assert.equal(getAlternateHref('/en/services#seo'), '/uslugi#seo')
+  assert.equal(getAlternateHref('/tseni'), '/en/pricing')
+  assert.equal(getAlternateHref('/en/pricing'), '/tseni')
   assert.equal(getAlternateHref('/en'), '/')
 })
 
@@ -98,6 +102,8 @@ test('isKnownBgRoute / isKnownRoute', () => {
 
   assert.equal(isKnownRoute('/uslugi'), true)
   assert.equal(isKnownRoute('/en/services'), true)
+  assert.equal(isKnownRoute('/tseni'), true)
+  assert.equal(isKnownRoute('/en/pricing'), true)
   assert.equal(isKnownRoute('/en/about'), true)
   assert.equal(isKnownRoute('/nonexistent'), false)
   assert.equal(isKnownRoute('/en/nonexistent'), false)
