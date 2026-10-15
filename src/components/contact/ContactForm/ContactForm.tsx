@@ -15,6 +15,11 @@ import type {
   ContactField,
   ContactFormValues,
 } from '@/lib/contact'
+import {
+  buildContactPayload,
+  contactEndpoint,
+  isExternalContactEndpoint,
+} from '@/lib/contactEndpoint'
 import { useLocale } from '@/lib/LocaleProvider'
 import { ui } from '@/lib/ui'
 
@@ -24,6 +29,7 @@ type Status = 'idle' | 'submitting' | 'success' | 'error'
 
 type ApiResponse = {
   ok?: boolean
+  success?: boolean
   message?: string
   errors?: ContactErrors
 }
@@ -88,23 +94,37 @@ export function ContactForm() {
     setStatus('submitting')
 
     try {
-      const response = await fetch('/api/contact', {
+      const response = await fetch(contactEndpoint, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...values, locale }),
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(buildContactPayload(values, locale)),
       })
       const payload = (await response
         .json()
         .catch(() => null)) as ApiResponse | null
 
-      if (response.ok && payload?.ok) {
+      // Third-party services report some failures with HTTP 200 and an explicit
+      // `{ ok: false }` / `{ success: false }` body, so those must not be read
+      // as success.
+      const explicitFailure =
+        payload?.ok === false || payload?.success === false
+
+      if (response.ok && !explicitFailure) {
         setValues(emptyContactValues)
         setStatus('success')
         window.requestAnimationFrame(() => successRef.current?.focus())
         return
       }
 
-      if (response.status === 400 && payload?.errors) {
+      // Only the in-process `/api/contact` route returns per-field errors.
+      if (
+        !isExternalContactEndpoint &&
+        response.status === 400 &&
+        payload?.errors
+      ) {
         setErrors(payload.errors)
         setStatus('idle')
         focusFirstError(payload.errors)

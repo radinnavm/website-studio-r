@@ -69,9 +69,15 @@ honeypot and a rate limit, then delivers via an email adapter.
 
 - **Development / preview** — the Vite plugin (`server/vite.ts`) serves the API
   in-process.
-- **Production** — `npm start` runs `server/index.ts`, which defaults to
-  `NODE_ENV=production`, serves the built `dist/` and the same API, and refuses
-  to start without a real email provider (so PII is never silently logged).
+- **Production (Node server)** — `npm start` runs `server/index.ts`, which
+  defaults to `NODE_ENV=production`, serves the built `dist/` and the same API,
+  and refuses to start without a real email provider (so PII is never silently
+  logged).
+- **Static hosting (e.g. Render Static Site)** — there is no Node process, so
+  set `VITE_CONTACT_ENDPOINT` at build time to an external form service
+  (Formspree, Basin, Web3Forms, …); the form posts there instead. See
+  `.env.example`. Without it, the form falls back to `/api/contact`, which only
+  exists locally.
 
 Configure delivery via environment variables (see `.env.example`). `.env` is
 git-ignored; never commit real values.
